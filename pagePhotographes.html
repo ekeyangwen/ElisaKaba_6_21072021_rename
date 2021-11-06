@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+    </style>
+    <script
+      src="https://kit.fontawesome.com/08db705dca.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/FishEye.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/index.html">
+        <img id="logoPerso" src="./FishEye_Photos/logoFE.png" />
+      </a>
+    </header>
+
+    <div id="mainPhotographe">
+      <section id="pagePerso"></section>
+
+      <section id="pageMedia"></section>
+
+      <aside
+        id="modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="titleModal"
+      >
+        <form
+          id="modalForm"
+          name="contact"
+          method="get"
+          onsubmit="return validate();"
+        >
+          <div class="headModal">
+            <h1 id="titleModal">Contactez-moi</h1>
+            <button id="modalClose">
+              <i class="fas fa-times" aria-hidden="false"></i>
+              <span class="fermer">Fermer la boite Modale</span>
+            </button>
+          </div>
+          <div class="champ firstredChamp">
+            <label for="first">Prénom</label>
+            <input
+              class="first-text-control"
+              type="text"
+              id="first"
+              name="first"
+            />
+          </div>
+          <div class="champ lastredChamp">
+            <label for="last">Nom</label>
+            <input
+              class="last-text-control"
+              type="text"
+              id="last"
+              name="last"
+            />
+          </div>
+          <div class="champ mailredChamp">
+            <label for="email">E-mail</label>
+            <input
+              class="mail-text-control"
+              type="email"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div class="champ messredChamp">
+            <label for="message">Votre message</label>
+            <input
+              class="mess-text-control"
+              type="text"
+              id="message"
+              name="message"
+            />
+          </div>
+          <input class="btn-submit" id="button" type="submit" value="Envoyer" />
+        </form>
+      </aside>
+
+      <aside id="likesCount">
+        <div class="likesPrice">
+          <div class="compteurDeLikes">
+            <span id="compteur">0</span>
+            <i class="fas fa-heart likeHeart"></i>
+          </div>
+          <div id="price"></div>
+        </div>
+      </aside>
+    </div>
+    <section id="boxes">
+      <div id="lightBox">
+        <button id="lightbox__prev" class="prevImg" aria-hidden="true">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          <span class="fermer" aria-hidden="true">Précédent</span>
+        </button>
+        <div class="imgBox" aria-hidden="true"></div>
+        <button id="lightbox__next" class="nextImg">
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          <span class="fermer" aria-hidden="true">Suivant</span>
+        </button>
+      </div>
+      <button id="lightbox__close" aria-hidden="true">
+        <i class="fas fa-times" , id="crossLightbox" aria-hidden="true"></i>
+        <span class="fermer" aria-hidden="true">Fermer</span>
+      </button>
+    </section>
+    <script type="module" src="./src/pagePhotographes.js"></script>
+    <script type="module" src="./src/Photographes.js"></script>
+    <script type="module" src="./src/MediaFactory.js"></script>
+    <script type="module" src="./src/form.js"></script>
+  </body>
+</html>
