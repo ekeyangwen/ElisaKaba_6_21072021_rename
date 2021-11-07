@@ -58,9 +58,9 @@ const infosAndMedia = (data) => {
   displayPhotographers(data.infoPerso);
 
   // function tabTri(data) {
-  let choix = document.getElementById("choixTri");
-  // console.log(choix);
-  choix.addEventListener("change", function (e) {
+  let choixTri = document.getElementById("choixTri");
+  // console.log(choixTri);
+  choixTri.addEventListener("change", function (e) {
     e.preventDefault();
     // console.log("dans l'event de mon change");
     chooseTri(e.target.value, data.mediaFind);
