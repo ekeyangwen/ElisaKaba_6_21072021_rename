@@ -38,7 +38,6 @@ const infosAndMedia = (data) => {
 
   function displayMedia(mediaFind) {
     let main = document.getElementById("pageMedia");
-    main.innerHTML = "";
     mediaFind.forEach((media) => {
       let singleMediaFind = new MediaFactory(media);
       // console.log(mediaFind);
@@ -318,6 +317,7 @@ const ligthBox = (data) => {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
+    console.log("hello");
   });
 
   function launchBox(e) {
@@ -343,7 +343,6 @@ const ligthBox = (data) => {
   close.addEventListener("click", closeLightBox);
 
   function closeLightBox(e) {
-    e.preventDefault();
     let main = document.getElementById("mainPhotographe");
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
@@ -391,7 +390,7 @@ const ligthBox = (data) => {
 
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
-        closeLightBox();
+        launchBox();
       }
     }); // });
   }
