@@ -4,9 +4,9 @@ import { vid } from "./MediaFactory.js";
 import { photographe } from "./Photographes.js";
 
 const url = "./src/FishEyeData.json";
-let infoPerso = 0;
-let mediaFind = 0;
-let searchParams = [];
+let infoPerso;
+let mediaFind;
+let searchParams;
 const getData = async () =>
   await fetch(url).then((response) => response.json());
 
@@ -20,6 +20,7 @@ const newFilter = (data) => {
     mediaFind = data.media.filter(
       (element) => element.photographerId == params
     );
+
     // console.log(mediaFind);
   });
   return { infoPerso, mediaFind };
@@ -40,12 +41,13 @@ const infosAndMedia = (data) => {
     let main = document.getElementById("pageMedia");
     mediaFind.forEach((media) => {
       let singleMediaFind = new MediaFactory(media);
-      // console.log(mediaFind);
+      // console.log(singleMediaFind);
 
       main.innerHTML += singleMediaFind.createHTML();
+      // console.log(main.innerHTML);
     });
   }
-  displayMedia(data.mediaFind);
+  displayMedia(mediaFind);
 
   function displayPhotographers(infoPerso) {
     let persoPhotographes = document.getElementById("pagePerso");
@@ -54,7 +56,7 @@ const infosAndMedia = (data) => {
       persoPhotographes.innerHTML += persoSingle.createPagePhotographes();
     });
   }
-  displayPhotographers(data.infoPerso);
+  displayPhotographers(infoPerso);
 
   // function tabTri(data) {
   let choixTri = document.getElementById("choixTri");
@@ -62,16 +64,19 @@ const infosAndMedia = (data) => {
   choixTri.addEventListener("change", function (e) {
     e.preventDefault();
     // console.log("dans l'event de mon change");
-    chooseTri(e.target.value, data.mediaFind);
+    chooseTri(e.target.value, mediaFind);
+    // console.log(tri);
+    // console.log(mediaFind);
   });
+
   // }
   // tabTri();
 
   function chooseTri(option, mediaatrier) {
-    // console.log(option);
+    // console.log(mediaatrier);
     const mediasTrie = mediaatrier.sort((a, b) => {
       if (option == "date") {
-        return new Date(b.date) - new Date(a.date);
+        return (mediaatrier = new Date(b.date) - new Date(a.date));
       } else if (option == "popularite") {
         return b.likes - a.likes;
       } else if (option == "titre") {
@@ -83,10 +88,52 @@ const infosAndMedia = (data) => {
         }
       }
     });
-
+    // console.log(mediasTrie);
     displayMedia(mediasTrie);
   }
-  // });
+
+  function tabFilter() {
+    let tagsTab = document.querySelectorAll(".tagsTab");
+    tagsTab.forEach((tag) => {
+      tag.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(tag);
+        chooseTag(e.target.innerHTML);
+      });
+    });
+  }
+
+  let tagsTab = document.querySelectorAll(".tagsTab");
+  tagsTab.forEach((tag) => {
+    tag.addEventListener("click", redirectionJavascript);
+    tag.addEventListener("click", tabFilter);
+  });
+
+  function redirectionJavascript() {
+    document.location.href = "/index.html";
+  }
+
+  function chooseTag(e) {
+    let tagsTab = document.querySelectorAll(".tagsTab");
+    let tags = document.querySelectorAll(".photographesTagList");
+    console.log(tagsTab);
+    let vignettes = document.querySelectorAll(".vignettePhotographes");
+
+    vignettes.forEach((vignette) => {
+      console.log(vignette.innerHTML);
+      let includeResult = vignette.innerHTML.includes(e);
+
+      tags.forEach((tag) => {
+        if (includeResult === false) {
+          console.log(includeResult);
+
+          vignette.style.display = "none";
+        } else {
+          vignette.style.display = "flex";
+        }
+      });
+    });
+  }
 };
 const count = (data) => {
   // Initialisation du compteur
@@ -317,7 +364,7 @@ const ligthBox = (data) => {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
-    console.log("hello");
+    // console.log("hello");
   });
 
   function launchBox(e) {
@@ -368,11 +415,11 @@ const ligthBox = (data) => {
     let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
     // console.log(mediaPhotographes);
     mediaPhotographes.forEach((media) => {
-      media.addEventListener("click", function (e) {
+      media.children[0].addEventListener("click", function (e) {
         // console.log(media);
         e.preventDefault();
         let mediaBox = media.children[1].children[0].innerHTML;
-        // console.log(mediaBox);
+        console.log(mediaBox);
         chooseMedia(mediaBox);
       });
     });
@@ -384,9 +431,9 @@ const ligthBox = (data) => {
     let boxName = document.querySelectorAll(".boxName");
     // console.log(boxName);
     boxName.forEach((titre) => {
-      console.log(titre.innerHTML);
+      // console.log(titre.innerHTML);
       let includeMedia = titre.innerHTML.includes(e);
-      console.log(includeMedia);
+      // console.log(includeMedia);
 
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
@@ -397,24 +444,64 @@ const ligthBox = (data) => {
 
   let prev = document.getElementById("lightbox__prev");
   let next = document.getElementById("lightbox__next");
-  prev.addEventListener("click", changeSlide(-1));
-  next.addEventListener("click", changeSlide(1));
+  let container = document.querySelectorAll(".lightbox__container");
 
-  function changeSlide(sens) {
-    let boxName = document.querySelectorAll(".boxName");
-    let slide = [];
-    slide.push(boxName);
-    console.log(slide);
-    let numero = 0;
-    numero = numero + sens;
-    console.log(numero);
-    if (numero < 0) {
-      numero = slide.length - 1;
-    } else if (numero > slide.length - 1) numero = 0;
-    // document.querySelector("slide");
-    // console.log(slide);
-  }
+  next.addEventListener("click", function (e) {
+    // console.log(container);
+    // console.log("hello");
+    e.preventDefault();
+    let index;
+    console.log(container);
+
+    for (let i = 0; i < container.length; i++) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        console.log(container.length);
+        index = i;
+      }
+      if (index > container.length - 1) {
+        console.log("hello");
+        index = -1;
+      }
+    }
+    container[index].classList.toggle("hiddenImg");
+    container[(index += 1)].classList.toggle("hiddenImg");
+    console.log(index);
+
+    console.log(container[index]);
+  });
+
+  // for (let i = 0; i > container.length; i--) {
+  //   if (container[i].classList.contains("hiddenImg")) {
+  //     console.log("la victoire, encore");
+  //   }
+  //   console.log(container[i].length);
+  //   console.log("HELLO");
+  //   console.log(i);
+  //   console.log(container[index].classList);
 };
+
+//   prev.addEventListener("click", function (e) {
+//     let previndex;
+//     for (let p = 0; p < container.length; p--) {
+//       if (!container[p].classList.contains("hiddenImg")) {
+//         // console.log("la victoire");
+//         // console.log(container[i].children[1].innerHTML);
+//         console.log(p);
+//         previndex = p;
+//         console.log(container[p]);
+//       }
+//       if (!container[p].classList.contains("hiddenImg")) {
+//         console.log("done!");
+//         p = 0;
+//       }
+//       // container[previndex].classList.toggle("hiddenImg");
+//       // container[previndex - 1].classList.toggle("hiddenImg");
+//       console.log(container.length);
+//       console.log(container[previndex]);
+//       console.log(container[previndex].classList);
+//     }
+//   });
+// };
 
 const init = async () => {
   const data = await getData();

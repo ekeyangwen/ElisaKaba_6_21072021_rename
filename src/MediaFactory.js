@@ -38,7 +38,7 @@ export class img {
   createLightBox() {
     return `
         <div class="lightbox__container hiddenImg">
-          <img class="bigBox " src="${this.path}" alt="${this.alt}" />
+          <img id="bigBox" src="${this.path}" alt="${this.alt}" />
           <p class="boxName">${this.title} </p>
         </div>`;
   }
