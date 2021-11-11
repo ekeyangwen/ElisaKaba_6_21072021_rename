@@ -12,7 +12,7 @@ const getData = async () =>
 
 const newFilter = (data) => {
   let paramsString = window.location.search;
-  let searchParams = new URLSearchParams(paramsString);
+  searchParams = new URLSearchParams(paramsString);
   searchParams.getAll("=");
   searchParams.forEach((params) => {
     // console.log(data);
@@ -27,6 +27,8 @@ const newFilter = (data) => {
 };
 
 const infosAndMedia = (data) => {
+  // console.log(mediaFind);
+
   // let paramsString = window.location.search;
   // let searchParams = new URLSearchParams(paramsString);
   // searchParams.getAll("=");
@@ -38,7 +40,9 @@ const infosAndMedia = (data) => {
   //   );
 
   function displayMedia(mediaFind) {
+    // console.log(mediaFind);
     let main = document.getElementById("pageMedia");
+    // console.log(main);
     mediaFind.forEach((media) => {
       let singleMediaFind = new MediaFactory(media);
       // console.log(singleMediaFind);
@@ -62,11 +66,10 @@ const infosAndMedia = (data) => {
   let choixTri = document.getElementById("choixTri");
   // console.log(choixTri);
   choixTri.addEventListener("change", function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log("dans l'event de mon change");
     chooseTri(e.target.value, mediaFind);
-    // console.log(tri);
-    // console.log(mediaFind);
+    console.log(mediaFind);
   });
 
   // }
@@ -74,8 +77,8 @@ const infosAndMedia = (data) => {
 
   function chooseTri(option, mediaatrier) {
     // console.log(mediaatrier);
-    const mediasTrie = mediaatrier.sort((a, b) => {
-      if (option == "date") {
+    const mediaTrie = mediaatrier.sort((a, b) => {
+      if ((option = "date")) {
         return (mediaatrier = new Date(b.date) - new Date(a.date));
       } else if (option == "popularite") {
         return b.likes - a.likes;
@@ -88,8 +91,12 @@ const infosAndMedia = (data) => {
         }
       }
     });
-    // console.log(mediasTrie);
-    displayMedia(mediasTrie);
+
+    displayMedia(mediaTrie);
+
+    //   mediasTrie.forEach((trie) => {
+    //
+    //   });
   }
 
   function tabFilter() {
@@ -376,7 +383,7 @@ const ligthBox = (data) => {
     lightBox.style.display = "flex";
     lightBox.setAttribute("aria-hidden", false);
     let close = document.getElementById("lightbox__close");
-    close.style.display = "block";
+    close.style.display = "flex";
   }
 
   let imgBox = document.querySelectorAll(".imgBox");
@@ -442,66 +449,58 @@ const ligthBox = (data) => {
     }); // });
   }
 
-  let prev = document.getElementById("lightbox__prev");
   let next = document.getElementById("lightbox__next");
   let container = document.querySelectorAll(".lightbox__container");
 
   next.addEventListener("click", function (e) {
-    // console.log(container);
-    // console.log("hello");
     e.preventDefault();
     let index;
-    console.log(container);
-
     for (let i = 0; i < container.length; i++) {
       if (!container[i].classList.contains("hiddenImg")) {
-        console.log(container.length);
+        // console.log(container.length);
         index = i;
       }
-      if (index > container.length - 1) {
-        console.log("hello");
-        index = -1;
+
+      console.log(container.length);
+      if (index === container.length - 1) {
+        // console.log("hello");
+        // console.log(container[index]);
+        console.log(index);
+
+        container[index].classList.toggle("hiddenImg");
+        index = 0;
+        container[index + 1].classList.toggle("hiddenImg");
       }
     }
     container[index].classList.toggle("hiddenImg");
-    container[(index += 1)].classList.toggle("hiddenImg");
-    console.log(index);
-
-    console.log(container[index]);
+    container[index + 1].classList.toggle("hiddenImg");
   });
-
-  // for (let i = 0; i > container.length; i--) {
-  //   if (container[i].classList.contains("hiddenImg")) {
-  //     console.log("la victoire, encore");
-  //   }
-  //   console.log(container[i].length);
-  //   console.log("HELLO");
-  //   console.log(i);
-  //   console.log(container[index].classList);
 };
 
-//   prev.addEventListener("click", function (e) {
-//     let previndex;
-//     for (let p = 0; p < container.length; p--) {
-//       if (!container[p].classList.contains("hiddenImg")) {
-//         // console.log("la victoire");
-//         // console.log(container[i].children[1].innerHTML);
-//         console.log(p);
-//         previndex = p;
-//         console.log(container[p]);
-//       }
-//       if (!container[p].classList.contains("hiddenImg")) {
-//         console.log("done!");
-//         p = 0;
-//       }
-//       // container[previndex].classList.toggle("hiddenImg");
-//       // container[previndex - 1].classList.toggle("hiddenImg");
-//       console.log(container.length);
-//       console.log(container[previndex]);
-//       console.log(container[previndex].classList);
-//     }
-//   });
-// };
+let prev = document.getElementById("lightbox__prev");
+let container = document.querySelectorAll(".lightbox__container");
+
+prev.addEventListener("click", function (e) {
+  e.preventDefault();
+  let index;
+
+  for (let p = 0; p < container.length; p--) {
+    if (container[p].classList.contains("hiddenImg")) {
+      console.log("la victoire encore!!!");
+      // console.log(container[i].children[1].innerHTML);
+      console.log(p);
+      index = p;
+      console.log(container[p]);
+    }
+    if (index === 0) {
+      container[index].classList.toggle("hiddenImg");
+      index = container.length - 1;
+      container[index - 1].classList.toggle("hiddenImg");
+    }
+  }
+  // container[index].classList.toggle("hiddenImg");
+  // container[index - 1].classList.toggle("hiddenImg");
+});
 
 const init = async () => {
   const data = await getData();
