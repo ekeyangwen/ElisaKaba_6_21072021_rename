@@ -310,6 +310,9 @@ h1 {
   flex-flow: row wrap;
   margin-top: 50px;
 }
+.hiddenMedia {
+  display: none;
+}
 
 .mediaPhotographes {
   margin-left: 60px;

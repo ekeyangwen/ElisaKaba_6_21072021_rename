@@ -63,13 +63,11 @@ const infosAndMedia = (data) => {
   displayPhotographers(infoPerso);
 
   // function tabTri(data) {
-  let choixTri = document.getElementById("choixTri");
-  // console.log(choixTri);
+  let choix = document.getElementById("choixTri");
   choixTri.addEventListener("change", function (e) {
-    // e.preventDefault();
+    e.preventDefault();
     // console.log("dans l'event de mon change");
     chooseTri(e.target.value, mediaFind);
-    console.log(mediaFind);
   });
 
   // }
@@ -77,8 +75,8 @@ const infosAndMedia = (data) => {
 
   function chooseTri(option, mediaatrier) {
     // console.log(mediaatrier);
-    const mediaTrie = mediaatrier.sort((a, b) => {
-      if ((option = "date")) {
+    const mediaTries = mediaatrier.sort((a, b) => {
+      if (option == "date") {
         return (mediaatrier = new Date(b.date) - new Date(a.date));
       } else if (option == "popularite") {
         return b.likes - a.likes;
@@ -92,12 +90,14 @@ const infosAndMedia = (data) => {
       }
     });
 
-    displayMedia(mediaTrie);
+    displayMedia(mediaTries);
 
-    //   mediasTrie.forEach((trie) => {
-    //
-    //   });
+    // console.log(mediaatrier);
   }
+
+  //   mediasTrie.forEach((trie) => {
+  //
+  //   });
 
   function tabFilter() {
     let tagsTab = document.querySelectorAll(".tagsTab");

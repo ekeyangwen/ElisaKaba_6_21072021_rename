@@ -37,10 +37,9 @@ function chooseTag(e) {
     console.log(vignette.innerHTML);
     let includeResult = vignette.innerHTML.includes(e);
 
-    tags.forEach((tag) => {
+    tags.forEach(function () {
       if (includeResult === false) {
         // console.log(includeResult);
-
         vignette.style.display = "none";
       } else {
         vignette.style.display = "flex";
