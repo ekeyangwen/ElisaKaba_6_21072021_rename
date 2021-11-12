@@ -1,6 +1,4 @@
 import { MediaFactory } from "./MediaFactory.js";
-import { img } from "./MediaFactory.js";
-import { vid } from "./MediaFactory.js";
 import { photographe } from "./Photographes.js";
 
 const url = "./src/FishEyeData.json";
@@ -26,7 +24,7 @@ const newFilter = (data) => {
   return { infoPerso, mediaFind };
 };
 
-const infosAndMedia = (data) => {
+const infosAndMedia = () => {
   // console.log(mediaFind);
 
   // let paramsString = window.location.search;
@@ -64,8 +62,7 @@ const infosAndMedia = (data) => {
 
   // function tabTri(data) {
   let choix = document.getElementById("choixTri");
-  choixTri.addEventListener("change", function (e) {
-    e.preventDefault();
+  choix.addEventListener("change", function (e) {
     // console.log("dans l'event de mon change");
     chooseTri(e.target.value, mediaFind);
   });
@@ -99,7 +96,8 @@ const infosAndMedia = (data) => {
   //
   //   });
 
-  function tabFilter() {
+  function tabFilter(e) {
+    e.preventDefault();
     let tagsTab = document.querySelectorAll(".tagsTab");
     tagsTab.forEach((tag) => {
       tag.addEventListener("click", function (e) {
@@ -121,6 +119,7 @@ const infosAndMedia = (data) => {
   }
 
   function chooseTag(e) {
+    e.preventDefault();
     let tagsTab = document.querySelectorAll(".tagsTab");
     let tags = document.querySelectorAll(".photographesTagList");
     console.log(tagsTab);
@@ -130,7 +129,7 @@ const infosAndMedia = (data) => {
       console.log(vignette.innerHTML);
       let includeResult = vignette.innerHTML.includes(e);
 
-      tags.forEach((tag) => {
+      tags.forEach(function () {
         if (includeResult === false) {
           console.log(includeResult);
 
@@ -142,10 +141,9 @@ const infosAndMedia = (data) => {
     });
   }
 };
-const count = (data) => {
+function count() {
   // Initialisation du compteur
   // function newLikes() {
-
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
   let sumall = mediaFind.map((item) => item.likes).reduce(reducer);
   let compteur = document.getElementById("compteur");
@@ -175,24 +173,21 @@ const count = (data) => {
     });
   });
   // }
-
   // function countLikes() {
   //   // console.log("compteur de likes");
   //   // // sumall++;
   //   // compteur.innerHTML = ++sumall;
   // }
-
   let price = document.getElementById("price");
   infoPerso.forEach((info) => {
     let priceSingle = new photographe(info);
     price.innerHTML += priceSingle.createPrice();
   });
-};
-const letsModal = (data) => {
+}
+
+const letsModal = function () {
   // Modal(infoPerso);
-
   // formData();
-
   // function Modal(infoPerso) {
   let titleModal = document.getElementById("titleModal");
   infoPerso.forEach((info) => {
@@ -200,7 +195,6 @@ const letsModal = (data) => {
     titleModal.innerHTML += titleSingle.createTitleModal();
   });
   // }
-
   // evennement sur le bouton pour déclencher fonction launchModal
   // function formData() {
   let modalBtn = document.getElementById("persoContactBtn");
@@ -209,10 +203,10 @@ const letsModal = (data) => {
   // }
   //fonction pour afficher la modal formulaire
   function launchModal(e) {
+    e.preventDefault();
     const modalbg = document.getElementById("modal");
     const close = document.getElementById("modalClose");
     const likesCount = document.getElementById("likesCount");
-    e.preventDefault();
     modalbg.style.display = "flex";
     modalbg.setAttribute("aria-hidden", false);
     modalbg.removeAttribute("aria-modal");
@@ -228,6 +222,7 @@ const letsModal = (data) => {
     modalForm.reset();
   }
   function closeModal(e) {
+    e.preventDefault();
     const modalbg = document.getElementById("modal");
     modalbg.style.display = "none";
     modalbg.setAttribute("aria-hidden", true);
@@ -261,11 +256,9 @@ const letsModal = (data) => {
   const firstRed = document.querySelector(".first-text-control");
   const lastRed = document.querySelector(".last-text-control");
   const mailRed = document.querySelector(".mail-text-control");
-  const messRed = document.querySelector(".mess-text-control");
   const firstRedBorderForm = document.querySelector(".firstredChamp");
   const lastRedBorderForm = document.querySelector(".lastredChamp");
   const mailRedBorderForm = document.querySelector(".mailredChamp");
-  const messRedBorderForm = document.querySelector(".messredChamp");
 
   function first() {
     //Regex pour validation du champ prénom
@@ -367,14 +360,15 @@ const letsModal = (data) => {
     return false;
   }
 };
-const ligthBox = (data) => {
+
+function ligthBox() {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
     // console.log("hello");
   });
 
-  function launchBox(e) {
+  function launchBox() {
     let main = document.getElementById("mainPhotographe");
     main.style.display = "none";
     let logo = document.getElementById("logoPerso");
@@ -397,6 +391,7 @@ const ligthBox = (data) => {
   close.addEventListener("click", closeLightBox);
 
   function closeLightBox(e) {
+    e.preventDefault();
     let main = document.getElementById("mainPhotographe");
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
@@ -441,7 +436,6 @@ const ligthBox = (data) => {
       // console.log(titre.innerHTML);
       let includeMedia = titre.innerHTML.includes(e);
       // console.log(includeMedia);
-
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
         launchBox();
@@ -452,8 +446,7 @@ const ligthBox = (data) => {
   let next = document.getElementById("lightbox__next");
   let container = document.querySelectorAll(".lightbox__container");
 
-  next.addEventListener("click", function (e) {
-    e.preventDefault();
+  next.addEventListener("click", () => {
     let index;
     for (let i = 0; i < container.length; i++) {
       if (!container[i].classList.contains("hiddenImg")) {
@@ -475,40 +468,59 @@ const ligthBox = (data) => {
     container[index].classList.toggle("hiddenImg");
     container[index + 1].classList.toggle("hiddenImg");
   });
-};
 
-let prev = document.getElementById("lightbox__prev");
-let container = document.querySelectorAll(".lightbox__container");
+  let prev = document.getElementById("lightbox__prev");
 
-prev.addEventListener("click", function (e) {
-  e.preventDefault();
-  let index;
+  prev.addEventListener("click", function (e) {
+    e.preventDefault();
+    let previndex;
 
-  for (let p = 0; p < container.length; p--) {
-    if (container[p].classList.contains("hiddenImg")) {
-      console.log("la victoire encore!!!");
-      // console.log(container[i].children[1].innerHTML);
-      console.log(p);
-      index = p;
-      console.log(container[p]);
+    for (let i = 0; i > container.length; i--) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        // console.log(container.length);
+        previndex = i;
+      }
+
+      console.log(container.length);
+      if (previndex === container.length + 1) {
+        // console.log("hello");
+        // console.log(container[previndex]);
+        console.log(previndex);
+
+        container[previndex].classList.toggle("hiddenImg");
+        previndex = -1;
+        container[previndex - 1].classList.toggle("hiddenImg");
+      }
     }
-    if (index === 0) {
-      container[index].classList.toggle("hiddenImg");
-      index = container.length - 1;
-      container[index - 1].classList.toggle("hiddenImg");
-    }
-  }
+    container[previndex].classList.toggle("hiddenImg");
+    container[previndex - 1].classList.toggle("hiddenImg");
+  });
+
+  // for (let p = 0; p < container.length; p--) {
+  //   if (container[p].classList.contains("hiddenImg")) {
+  //     console.log("la victoire encore!!!");
+  //     // console.log(container[i].children[1].innerHTML);
+  //     console.log(p);
+  //     index = p;
+  //     console.log(container[p]);
+  //   }
+  //   if (index === 0) {
+  //     container[index].classList.toggle("hiddenImg");
+  //     index = container.length - 1;
+  //     container[index - 1].classList.toggle("hiddenImg");
+  //   }
+  // }
   // container[index].classList.toggle("hiddenImg");
   // container[index - 1].classList.toggle("hiddenImg");
-});
+}
 
-const init = async () => {
+async function init() {
   const data = await getData();
   const dataFiltre = newFilter(data);
   infosAndMedia(dataFiltre);
-  const dataCount = count(data);
+  count(data);
   letsModal(dataFiltre);
   ligthBox(dataFiltre);
-};
+}
 
 init();
