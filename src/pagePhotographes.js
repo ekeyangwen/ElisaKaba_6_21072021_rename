@@ -71,22 +71,27 @@ const infosAndMedia = () => {
   // tabTri();
 
   function chooseTri(option, mediaatrier) {
-    // console.log(mediaatrier);
+    let pages = document.getElementById("pageMedia");
+
     const mediaTries = mediaatrier.sort((a, b) => {
+      // console.log(mediaTries);
       if (option == "date") {
+        pages.innerHTML = "";
         return (mediaatrier = new Date(b.date) - new Date(a.date));
       } else if (option == "popularite") {
+        pages.innerHTML = "";
         return b.likes - a.likes;
       } else if (option == "titre") {
         if (a.title < b.title) {
+          pages.innerHTML = "";
           return -1;
         }
         if (a.title > b.title) {
+          pages.innerHTML = "";
           return 1;
         }
       }
     });
-
     displayMedia(mediaTries);
 
     // console.log(mediaatrier);
@@ -454,11 +459,11 @@ function ligthBox() {
         index = i;
       }
 
-      console.log(container.length);
+      // console.log(container.length);
       if (index === container.length - 1) {
         // console.log("hello");
         // console.log(container[index]);
-        console.log(index);
+        // console.log(index);
 
         container[index].classList.toggle("hiddenImg");
         index = 0;
@@ -471,24 +476,25 @@ function ligthBox() {
 
   let prev = document.getElementById("lightbox__prev");
 
-  prev.addEventListener("click", function (e) {
-    e.preventDefault();
+  prev.addEventListener("click", () => {
     let previndex;
 
-    for (let i = 0; i > container.length; i--) {
+    for (let i = 0; i < container.length; i++) {
+      // console.log("boucle for");
       if (!container[i].classList.contains("hiddenImg")) {
-        // console.log(container.length);
         previndex = i;
+
+        console.log(previndex);
       }
 
-      console.log(container.length);
-      if (previndex === container.length + 1) {
-        // console.log("hello");
+      // console.log(container.length);
+      if (previndex === 0) {
+        console.log(" hello");
         // console.log(container[previndex]);
+        console.log(container[previndex]);
         console.log(previndex);
-
         container[previndex].classList.toggle("hiddenImg");
-        previndex = -1;
+        previndex = container.length;
         container[previndex - 1].classList.toggle("hiddenImg");
       }
     }

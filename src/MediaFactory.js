@@ -22,7 +22,7 @@ export class img {
     this.price = data.price;
   }
   createHTML() {
-    return `<section class="mediaPhotographes"">
+    return `<section class="mediaPhotographes">
     <img class="path" src="${this.path}" alt="${this.alt}">
      <section class="infoMedia">
     <p class="title">${this.title}</p>    
