@@ -73,6 +73,8 @@ const infosAndMedia = () => {
   function chooseTri(option, mediaatrier) {
     let pages = document.getElementById("pageMedia");
 
+    // console.log("hello");
+
     const mediaTries = mediaatrier.sort((a, b) => {
       // console.log(mediaTries);
       if (option == "date") {
@@ -92,6 +94,7 @@ const infosAndMedia = () => {
         }
       }
     });
+
     displayMedia(mediaTries);
 
     // console.log(mediaatrier);
@@ -101,6 +104,15 @@ const infosAndMedia = () => {
   //
   //   });
 
+  let tagsTab = document.querySelectorAll(".tagsTab");
+  tagsTab.forEach((tag) => {
+    tag.addEventListener("click", redirectionJavascript);
+    tag.addEventListener("click", tabFilter);
+  });
+
+  function redirectionJavascript() {
+    document.location.href = "/index.html";
+  }
   function tabFilter(e) {
     e.preventDefault();
     let tagsTab = document.querySelectorAll(".tagsTab");
@@ -111,16 +123,6 @@ const infosAndMedia = () => {
         chooseTag(e.target.innerHTML);
       });
     });
-  }
-
-  let tagsTab = document.querySelectorAll(".tagsTab");
-  tagsTab.forEach((tag) => {
-    tag.addEventListener("click", redirectionJavascript);
-    tag.addEventListener("click", tabFilter);
-  });
-
-  function redirectionJavascript() {
-    document.location.href = "/index.html";
   }
 
   function chooseTag(e) {
@@ -199,6 +201,10 @@ const letsModal = function () {
     let titleSingle = new photographe(info);
     titleModal.innerHTML += titleSingle.createTitleModal();
   });
+
+  function attribuerFocus() {
+    document.getElementById("modal").focus();
+  }
   // }
   // evennement sur le bouton pour déclencher fonction launchModal
   // function formData() {
@@ -206,6 +212,7 @@ const letsModal = function () {
   // console.log(modalBtn);
   modalBtn.addEventListener("click", launchModal);
   // }
+  modalBtn.addEventListener("click", attribuerFocus);
   //fonction pour afficher la modal formulaire
   function launchModal(e) {
     e.preventDefault();
@@ -448,76 +455,92 @@ function ligthBox() {
     }); // });
   }
 
-  let next = document.getElementById("lightbox__next");
-  let container = document.querySelectorAll(".lightbox__container");
+  function nextImg() {
+    let next = document.getElementById("lightbox__next");
+    let container = document.querySelectorAll(".lightbox__container");
 
-  next.addEventListener("click", () => {
-    let index;
-    for (let i = 0; i < container.length; i++) {
-      if (!container[i].classList.contains("hiddenImg")) {
+    next.addEventListener("click", () => {
+      let index;
+      for (let i = 0; i < container.length; i++) {
+        if (!container[i].classList.contains("hiddenImg")) {
+          // console.log(container.length);
+          index = i;
+        }
+
         // console.log(container.length);
-        index = i;
-      }
+        if (index === container.length - 1) {
+          // console.log("hello");
+          // console.log(container[index]);
+          // console.log(index);
 
-      // console.log(container.length);
-      if (index === container.length - 1) {
-        // console.log("hello");
-        // console.log(container[index]);
-        // console.log(index);
-
-        container[index].classList.toggle("hiddenImg");
-        index = 0;
-        container[index + 1].classList.toggle("hiddenImg");
+          container[index].classList.toggle("hiddenImg");
+          index = 0;
+          container[index + 1].classList.toggle("hiddenImg");
+        }
       }
+      container[index].classList.toggle("hiddenImg");
+      container[index + 1].classList.toggle("hiddenImg");
+    });
+  }
+  nextImg();
+
+  function previousImg() {
+    let prev = document.getElementById("lightbox__prev");
+    let container = document.querySelectorAll(".lightbox__container");
+
+    prev.addEventListener("click", () => {
+      let previndex;
+
+      for (let i = 0; i < container.length; i++) {
+        // console.log("boucle for");
+        if (!container[i].classList.contains("hiddenImg")) {
+          previndex = i;
+
+          // console.log(previndex);
+        }
+
+        // console.log(container.length);
+        if (previndex === 0) {
+          console.log(" hello");
+          // console.log(container[previndex]);
+          console.log(container[previndex]);
+          container[previndex].classList.toggle("hiddenImg");
+          previndex = container.length;
+          // container[previndex].classList.toggle("hiddenImg");
+          console.log(container.length);
+          console.log(previndex);
+        }
+      }
+      container[previndex - 1].classList.toggle("hiddenImg");
+      container[previndex].classList.toggle("hiddenImg");
+    });
+  }
+
+  previousImg();
+
+  function attribuerFocusPrev() {
+    document.getElementById("lightbox__prev").focus();
+  }
+  function attribuerFocusNext() {
+    document.getElementById("lightbox__next").focus();
+  }
+  // let prev = document.getElementById("lightbox__prev");
+  // let next = document.getElementById("lightbox__next");
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      console.log(e.key);
+      previousImg();
+      attribuerFocusPrev();
     }
-    container[index].classList.toggle("hiddenImg");
-    container[index + 1].classList.toggle("hiddenImg");
   });
-
-  let prev = document.getElementById("lightbox__prev");
-
-  prev.addEventListener("click", () => {
-    let previndex;
-
-    for (let i = 0; i < container.length; i++) {
-      // console.log("boucle for");
-      if (!container[i].classList.contains("hiddenImg")) {
-        previndex = i;
-
-        console.log(previndex);
-      }
-
-      // console.log(container.length);
-      if (previndex === 0) {
-        console.log(" hello");
-        // console.log(container[previndex]);
-        console.log(container[previndex]);
-        console.log(previndex);
-        container[previndex].classList.toggle("hiddenImg");
-        previndex = container.length;
-        container[previndex - 1].classList.toggle("hiddenImg");
-      }
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") {
+      console.log(e.key);
+      nextImg();
+      attribuerFocusNext();
     }
-    container[previndex].classList.toggle("hiddenImg");
-    container[previndex - 1].classList.toggle("hiddenImg");
   });
-
-  // for (let p = 0; p < container.length; p--) {
-  //   if (container[p].classList.contains("hiddenImg")) {
-  //     console.log("la victoire encore!!!");
-  //     // console.log(container[i].children[1].innerHTML);
-  //     console.log(p);
-  //     index = p;
-  //     console.log(container[p]);
-  //   }
-  //   if (index === 0) {
-  //     container[index].classList.toggle("hiddenImg");
-  //     index = container.length - 1;
-  //     container[index - 1].classList.toggle("hiddenImg");
-  //   }
-  // }
-  // container[index].classList.toggle("hiddenImg");
-  // container[index - 1].classList.toggle("hiddenImg");
 }
 
 async function init() {

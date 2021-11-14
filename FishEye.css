@@ -759,19 +759,3 @@ h1 {
   text-align: left;
   align-self: flex-start;
 }
-@include media-breakpoint-up(sm) {
-  ...;
-}
-@include media-breakpoint-up(md) {
-  ...;
-}
-@include media-breakpoint-up(lg) {
-  .persoPhoto {
-  }
-}
-@include media-breakpoint-up(xl) {
-  ...;
-}
-@include media-breakpoint-up(xxl) {
-  ...;
-}
