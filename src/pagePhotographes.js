@@ -251,8 +251,13 @@ const letsModal = function () {
   }
 
   window.addEventListener("keydown", function (e) {
+    console.log(e.key);
     if (e.key === "Escape" || e.key === "Esc") {
       closeModal(e);
+      reset();
+    }
+    if (e.key === "Enter") {
+      closeModal();
       reset();
     }
   });
@@ -402,8 +407,7 @@ function ligthBox() {
   let close = document.getElementById("lightbox__close");
   close.addEventListener("click", closeLightBox);
 
-  function closeLightBox(e) {
-    e.preventDefault();
+  function closeLightBox() {
     let main = document.getElementById("mainPhotographe");
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
