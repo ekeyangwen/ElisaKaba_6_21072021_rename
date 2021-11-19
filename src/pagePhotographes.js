@@ -62,6 +62,7 @@ const infosAndMedia = () => {
 
   // function tabTri(data) {
   let choix = document.getElementById("choixTri");
+  console.log(choix);
   choix.addEventListener("change", function (e) {
     // console.log("dans l'event de mon change");
     chooseTri(e.target.value, mediaFind);
@@ -96,13 +97,12 @@ const infosAndMedia = () => {
     });
 
     displayMedia(mediaTries);
-
+    ligthBox();
+    // mediaTries.forEach((trie) => {
+    //   console.log(trie);
+    // });
     // console.log(mediaatrier);
   }
-
-  //   mediasTrie.forEach((trie) => {
-  //
-  //   });
 
   let tagsTab = document.querySelectorAll(".tagsTab");
   tagsTab.forEach((tag) => {
@@ -233,8 +233,7 @@ const letsModal = function () {
     const modalForm = document.getElementById("modalForm");
     modalForm.reset();
   }
-  function closeModal(e) {
-    e.preventDefault();
+  function closeModal() {
     const modalbg = document.getElementById("modal");
     modalbg.style.display = "none";
     modalbg.setAttribute("aria-hidden", true);
@@ -381,6 +380,7 @@ function ligthBox() {
   });
 
   function launchBox() {
+    console.log("launchbox");
     let main = document.getElementById("mainPhotographe");
     main.style.display = "none";
     let logo = document.getElementById("logoPerso");
@@ -442,6 +442,7 @@ function ligthBox() {
   mediaFilter();
 
   function chooseMedia(e) {
+    console.log("chooseMedia");
     let boxName = document.querySelectorAll(".boxName");
     // console.log(boxName);
     boxName.forEach((titre) => {
@@ -463,14 +464,16 @@ function ligthBox() {
       let index;
       for (let i = 0; i < container.length; i++) {
         if (!container[i].classList.contains("hiddenImg")) {
-          // console.log(container.length);
+          console.log(container.length);
+
           index = i;
+          console.log(container[index]);
         }
 
         // console.log(container.length);
         if (index === container.length - 1) {
           // console.log("hello");
-          // console.log(container[index]);
+
           // console.log(index);
 
           container[index].classList.toggle("hiddenImg");
