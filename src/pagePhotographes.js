@@ -465,7 +465,7 @@ function ligthBox() {
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
-      container[previndex].classList.toggle("hiddenImg");
+      // container[previndex].classList.toggle("hiddenImg");
       viderLaPage();
     });
   }
