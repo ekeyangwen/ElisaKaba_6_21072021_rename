@@ -5,52 +5,38 @@ const url = "./src/FishEyeData.json";
 let infoPerso;
 let mediaFind;
 let searchParams;
+
+// récupération des données JSON
 const getData = async () =>
   await fetch(url).then((response) => response.json());
 
+// récupération de l'id photographes pour créer page perso
+// récupération des médias pour chaque photographe
 const newFilter = (data) => {
   let paramsString = window.location.search;
   searchParams = new URLSearchParams(paramsString);
   searchParams.getAll("=");
   searchParams.forEach((params) => {
-    // console.log(data);
     infoPerso = data.photographers.filter((info) => info.id == params);
     mediaFind = data.media.filter(
       (element) => element.photographerId == params
     );
-
-    // console.log(mediaFind);
   });
   return { infoPerso, mediaFind };
 };
 
+// Insertion du code pour vignettes média dans page photographe
 const infosAndMedia = () => {
-  // console.log(mediaFind);
-
-  // let paramsString = window.location.search;
-  // let searchParams = new URLSearchParams(paramsString);
-  // searchParams.getAll("=");
-  // searchParams.forEach((params) => {
-  //   console.log(data);
-  //   const infoPerso = data.photographers.filter((info) => info.id == params);
-  //   const mediaFind = data.media.filter(
-  //     (element) => element.photographerId == params
-  //   );
-
   function displayMedia(mediaFind) {
-    // console.log(mediaFind);
     let main = document.getElementById("pageMedia");
-    // console.log(main);
     mediaFind.forEach((media) => {
       let singleMediaFind = new MediaFactory(media);
-      // console.log(singleMediaFind);
-
       main.innerHTML += singleMediaFind.createHTML();
-      // console.log(main.innerHTML);
     });
   }
   displayMedia(mediaFind);
 
+  // Insertion du code pour infos photographe sur la page perso
   function displayPhotographers(infoPerso) {
     let persoPhotographes = document.getElementById("pagePerso");
     infoPerso.forEach((info) => {
@@ -60,24 +46,17 @@ const infosAndMedia = () => {
   }
   displayPhotographers(infoPerso);
 
-  // function tabTri(data) {
+  // Event et option de tri
   let choix = document.getElementById("choixTri");
   console.log(choix);
   choix.addEventListener("change", function (e) {
-    // console.log("dans l'event de mon change");
     chooseTri(e.target.value, mediaFind);
   });
 
-  // }
-  // tabTri();
-
+  // Tri en fonction du choix
   function chooseTri(option, mediaatrier) {
     let pages = document.getElementById("pageMedia");
-
-    // console.log("hello");
-
     const mediaTries = mediaatrier.sort((a, b) => {
-      // console.log(mediaTries);
       if (option == "date") {
         pages.innerHTML = "";
         return (mediaatrier = new Date(b.date) - new Date(a.date));
@@ -98,12 +77,9 @@ const infosAndMedia = () => {
 
     displayMedia(mediaTries);
     ligthBox();
-    // mediaTries.forEach((trie) => {
-    //   console.log(trie);
-    // });
-    // console.log(mediaatrier);
   }
 
+  // redirection tags
   let tagsTab = document.querySelectorAll(".tagsTab");
   tagsTab.forEach((tag) => {
     tag.addEventListener("click", redirectionJavascript);
@@ -125,21 +101,18 @@ const infosAndMedia = () => {
     });
   }
 
+  // Tri des vignettes en fonction des tags
   function chooseTag(e) {
     e.preventDefault();
-    let tagsTab = document.querySelectorAll(".tagsTab");
     let tags = document.querySelectorAll(".photographesTagList");
-    console.log(tagsTab);
+
     let vignettes = document.querySelectorAll(".vignettePhotographes");
 
     vignettes.forEach((vignette) => {
-      console.log(vignette.innerHTML);
       let includeResult = vignette.innerHTML.includes(e);
 
       tags.forEach(function () {
         if (includeResult === false) {
-          console.log(includeResult);
-
           vignette.style.display = "none";
         } else {
           vignette.style.display = "flex";
@@ -148,22 +121,20 @@ const infosAndMedia = () => {
     });
   }
 };
+
+// Comptage des likes (incrémentation et décrémentation)
 function count() {
-  // Initialisation du compteur
-  // function newLikes() {
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
   let sumall = mediaFind.map((item) => item.likes).reduce(reducer);
   let compteur = document.getElementById("compteur");
   compteur.innerHTML = sumall;
   let likes = document.querySelectorAll(".likesBtn");
   likes.forEach((like) => {
-    // console.log("Mise en place de l'envent");
     like.addEventListener("click", () => {
       let likescompteur = like.children[0].innerHTML;
       let isLike = like.getAttribute("data-like");
 
       if (isLike == "false") {
-        // console.log("isLike=false");
         like.children[0].innerHTML = ++likescompteur;
         like.setAttribute("data-like", true);
         compteur.innerHTML = ++sumall;
@@ -172,19 +143,10 @@ function count() {
         like.setAttribute("data-like", false);
         compteur.innerHTML = --sumall;
       }
-      // console.log(isLike);
-      // console.log(likescompteur);
-      // console.log("compteur de likes");
-      // // sumall++;
-      // compteur.innerHTML = ++sumall;
     });
   });
-  // }
-  // function countLikes() {
-  //   // console.log("compteur de likes");
-  //   // // sumall++;
-  //   // compteur.innerHTML = ++sumall;
-  // }
+
+  // Récupéation du code pour affichage de prix
   let price = document.getElementById("price");
   infoPerso.forEach((info) => {
     let priceSingle = new photographe(info);
@@ -192,28 +154,24 @@ function count() {
   });
 }
 
+// Création de la modal
 const letsModal = function () {
-  // Modal(infoPerso);
-  // formData();
-  // function Modal(infoPerso) {
   let titleModal = document.getElementById("titleModal");
   infoPerso.forEach((info) => {
     let titleSingle = new photographe(info);
     titleModal.innerHTML += titleSingle.createTitleModal();
   });
 
+  //  fonction pour donner le focus à la modal
   function attribuerFocus() {
     document.getElementById("modal").focus();
   }
-  // }
-  // evennement sur le bouton pour déclencher fonction launchModal
-  // function formData() {
+
   let modalBtn = document.getElementById("persoContactBtn");
-  // console.log(modalBtn);
   modalBtn.addEventListener("click", launchModal);
-  // }
   modalBtn.addEventListener("click", attribuerFocus);
-  //fonction pour afficher la modal formulaire
+
+  // fonction pour afficher la modal formulaire
   function launchModal(e) {
     e.preventDefault();
     const modalbg = document.getElementById("modal");
@@ -228,11 +186,13 @@ const letsModal = function () {
     modalForm.addEventListener("click", stopClose);
   }
 
+  //création de la fonction reset pour réinitialiser tout le formulaire
   function reset() {
-    //création de la fonction reset pour réinitialiser tout le formulaire
     const modalForm = document.getElementById("modalForm");
     modalForm.reset();
   }
+
+  // Fermeture de la modal
   function closeModal() {
     const modalbg = document.getElementById("modal");
     modalbg.style.display = "none";
@@ -250,6 +210,7 @@ const letsModal = function () {
     reset();
   }
 
+  //  Event sur la touche escape et enter
   window.addEventListener("keydown", function (e) {
     console.log(e.key);
     if (e.key === "Escape" || e.key === "Esc") {
@@ -262,10 +223,7 @@ const letsModal = function () {
     }
   });
 
-  function stopClose(e) {
-    e.stopPropagation();
-  }
-
+  // Vérification des champs du formulaire
   const fnElem = document.getElementById("first"); //champ prénom
   const lastElem = document.getElementById("last"); //champ nom
   const mailElem = document.getElementById("email"); //champs email
@@ -277,7 +235,6 @@ const letsModal = function () {
   const mailRedBorderForm = document.querySelector(".mailredChamp");
 
   function first() {
-    //Regex pour validation du champ prénom
     const fnRegExp = /[a-zA-Z-+]{2,}/g; //plusieurs lettres (min 2)
     let checkFnRegExp = fnRegExp.test(fnElem.value); //comparaison entre regex et valeur du champ
     console.log(fnElem.value);
@@ -308,6 +265,7 @@ const letsModal = function () {
     }
   }
 
+  // (cf first)
   function last() {
     const lastRegExp = /[a-zA-Z-+]{2,30}/g;
     let checklastRegExp = lastRegExp.test(lastElem.value);
@@ -331,6 +289,7 @@ const letsModal = function () {
     }
   }
 
+  // (cf first)
   function mail() {
     const mailRegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,4}$/g;
     let checkmailRegExp = mailRegExp.test(mailElem.value);
@@ -356,6 +315,7 @@ const letsModal = function () {
     }
   }
 
+  // création de l'event pour validation
   let submitBtn = document.querySelector(".btn-submit");
   submitBtn.addEventListener("click", validation); //evennement sur le bouton submit
 
@@ -372,18 +332,20 @@ const letsModal = function () {
     ) {
       closeModal(); //on ferme la modal du formulaire
       reset(); //on réinitialise le formulaire
-    } else console.log("STOP!");
-    return false;
+    } else {
+      return false;
+    }
   }
 };
 
+// création de l'event lancement de la lightbox
 function ligthBox() {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
-    // console.log("hello");
   });
 
+  // fonction pour lancer la lightbox
   function launchBox() {
     console.log("launchbox");
     let main = document.getElementById("mainPhotographe");
@@ -397,6 +359,7 @@ function ligthBox() {
     close.style.display = "flex";
   }
 
+  // Recupération du code pour source et nom de la photo
   let imgBox = document.querySelectorAll(".imgBox");
   mediaFind.forEach((media) => {
     let pathMediaBox = new MediaFactory(media);
@@ -404,9 +367,12 @@ function ligthBox() {
       box.innerHTML += pathMediaBox.createLightBox();
     });
   });
+
+  // Event pour fermer la lightbox
   let close = document.getElementById("lightbox__close");
   close.addEventListener("click", closeLightBox);
 
+  // Fermeture de la lightbox
   function closeLightBox() {
     let main = document.getElementById("mainPhotographe");
     main.style.display = "block";
@@ -423,18 +389,18 @@ function ligthBox() {
     });
   }
 
+  // Event sur touche escape - navigation au clavier
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
       closeLightBox(e);
     }
   });
 
+  // fonction pour savoir quelle vignette est cliquée
   function mediaFilter() {
     let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
-    // console.log(mediaPhotographes);
     mediaPhotographes.forEach((media) => {
       media.children[0].addEventListener("click", function (e) {
-        // console.log(media);
         e.preventDefault();
         let mediaBox = media.children[1].children[0].innerHTML;
         console.log(mediaBox);
@@ -445,21 +411,20 @@ function ligthBox() {
 
   mediaFilter();
 
+  // lancer la bonne lightbox
   function chooseMedia(e) {
     console.log("chooseMedia");
     let boxName = document.querySelectorAll(".boxName");
-    // console.log(boxName);
     boxName.forEach((titre) => {
-      // console.log(titre.innerHTML);
       let includeMedia = titre.innerHTML.includes(e);
-      // console.log(includeMedia);
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
         launchBox();
       }
-    }); // });
+    });
   }
 
+  // fonction pour utiliser bouton next et previous- event sur le btn
   function nextImg() {
     let next = document.getElementById("lightbox__next");
     let container = document.querySelectorAll(".lightbox__container");
@@ -471,15 +436,8 @@ function ligthBox() {
           console.log(container.length);
 
           index = i;
-          console.log(container[index]);
         }
-
-        // console.log(container.length);
         if (index === container.length - 1) {
-          // console.log("hello");
-
-          // console.log(index);
-
           container[index].classList.toggle("hiddenImg");
           index = 0;
           container[index + 1].classList.toggle("hiddenImg");
@@ -499,23 +457,13 @@ function ligthBox() {
       let previndex;
 
       for (let i = 0; i < container.length; i++) {
-        // console.log("boucle for");
         if (!container[i].classList.contains("hiddenImg")) {
           previndex = i;
-
-          // console.log(previndex);
         }
-
-        // console.log(container.length);
         if (previndex === 0) {
-          console.log(" hello");
-          // console.log(container[previndex]);
           console.log(container[previndex]);
           container[previndex].classList.toggle("hiddenImg");
           previndex = container.length;
-          // container[previndex].classList.toggle("hiddenImg");
-          console.log(container.length);
-          console.log(previndex);
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
@@ -525,14 +473,14 @@ function ligthBox() {
 
   previousImg();
 
+  // fonctions pour donner le focus et naviguer avec le clavier pour les btn next et prev
   function attribuerFocusPrev() {
     document.getElementById("lightbox__prev").focus();
   }
   function attribuerFocusNext() {
     document.getElementById("lightbox__next").focus();
   }
-  // let prev = document.getElementById("lightbox__prev");
-  // let next = document.getElementById("lightbox__next");
+
   window.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
@@ -550,6 +498,7 @@ function ligthBox() {
   });
 }
 
+// fonction globale d'intialisation de toutes les fonctions
 async function init() {
   const data = await getData();
   const dataFiltre = newFilter(data);
