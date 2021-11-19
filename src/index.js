@@ -8,8 +8,6 @@ fetch(url)
   .then((data) => {
     for (let photographer of data.photographers) {
       let photographeSingle = new photographe(photographer);
-      // console.log(photographeSingle.tags);
-      console.log(photographeSingle);
       let photographes = document.getElementById("photographes");
       photographes.innerHTML += photographeSingle.createVignette();
     }
@@ -17,11 +15,9 @@ fetch(url)
 
 function tabFilter() {
   let hash = document.querySelectorAll(".hash");
-  console.log(hash);
   hash.forEach((event) => {
     event.addEventListener("click", function (e) {
       e.preventDefault();
-      console.log(event);
       chooseTag(e.target.innerHTML);
     });
   });
@@ -34,12 +30,10 @@ function chooseTag(e) {
   let vignettes = document.querySelectorAll(".vignettePhotographes");
 
   vignettes.forEach((vignette) => {
-    console.log(vignette.innerHTML);
     let includeResult = vignette.innerHTML.includes(e);
 
     tags.forEach(function () {
       if (includeResult === false) {
-        // console.log(includeResult);
         vignette.style.display = "none";
       } else {
         vignette.style.display = "flex";

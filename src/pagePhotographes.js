@@ -79,47 +79,47 @@ const infosAndMedia = () => {
     ligthBox();
   }
 
-  // redirection tags
+  // redirection tags photographes vers page d'accueil filtrée par tags
   let tagsTab = document.querySelectorAll(".tagsTab");
   tagsTab.forEach((tag) => {
     tag.addEventListener("click", redirectionJavascript);
-    tag.addEventListener("click", tabFilter);
+    // tag.addEventListener("click", tabFilter);
   });
 
   function redirectionJavascript() {
     document.location.href = "/index.html";
   }
-  function tabFilter(e) {
-    e.preventDefault();
-    let tagsTab = document.querySelectorAll(".tagsTab");
-    tagsTab.forEach((tag) => {
-      tag.addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log(tag);
-        chooseTag(e.target.innerHTML);
-      });
-    });
-  }
+  // function tabFilter(e) {
+  //   e.preventDefault();
+  //   let tagsTab = document.querySelectorAll(".tagsTab");
+  //   tagsTab.forEach((tag) => {
+  //     tag.addEventListener("click", function (e) {
+  //       e.preventDefault();
+  //       console.log(tag);
+  //       chooseTag(e.target.innerHTML);
+  //     });
+  //   });
+  // }
 
-  // Tri des vignettes en fonction des tags
-  function chooseTag(e) {
-    e.preventDefault();
-    let tags = document.querySelectorAll(".photographesTagList");
+  // // Tri des vignettes en fonction des tags
+  // function chooseTag(e) {
+  //   e.preventDefault();
+  //   let tags = document.querySelectorAll(".photographesTagList");
 
-    let vignettes = document.querySelectorAll(".vignettePhotographes");
+  //   let vignettes = document.querySelectorAll(".vignettePhotographes");
 
-    vignettes.forEach((vignette) => {
-      let includeResult = vignette.innerHTML.includes(e);
+  //   vignettes.forEach((vignette) => {
+  //     let includeResult = vignette.innerHTML.includes(e);
 
-      tags.forEach(function () {
-        if (includeResult === false) {
-          vignette.style.display = "none";
-        } else {
-          vignette.style.display = "flex";
-        }
-      });
-    });
-  }
+  //     tags.forEach(function () {
+  //       if (includeResult === false) {
+  //         vignette.style.display = "none";
+  //       } else {
+  //         vignette.style.display = "flex";
+  //       }
+  //     });
+  //   });
+  // }
 };
 
 // Comptage des likes (incrémentation et décrémentation)
@@ -182,8 +182,6 @@ const letsModal = function () {
     modalbg.removeAttribute("aria-modal");
     close.addEventListener("click", closeModal);
     likesCount.style.display = "none";
-    const modalForm = document.getElementById("modalForm");
-    modalForm.addEventListener("click", stopClose);
   }
 
   //création de la fonction reset pour réinitialiser tout le formulaire
@@ -347,7 +345,6 @@ function ligthBox() {
 
   // fonction pour lancer la lightbox
   function launchBox() {
-    console.log("launchbox");
     let main = document.getElementById("mainPhotographe");
     main.style.display = "none";
     let logo = document.getElementById("logoPerso");
@@ -445,6 +442,7 @@ function ligthBox() {
       }
       container[index].classList.toggle("hiddenImg");
       container[index + 1].classList.toggle("hiddenImg");
+      viderLaPage();
     });
   }
   nextImg();
@@ -468,9 +466,9 @@ function ligthBox() {
       }
       container[previndex - 1].classList.toggle("hiddenImg");
       container[previndex].classList.toggle("hiddenImg");
+      viderLaPage();
     });
   }
-
   previousImg();
 
   // fonctions pour donner le focus et naviguer avec le clavier pour les btn next et prev
@@ -481,19 +479,28 @@ function ligthBox() {
     document.getElementById("lightbox__next").focus();
   }
 
+  function viderLaPage() {
+    let main = document.getElementById("mainPhotographe");
+    main.style.display = "none";
+    let logo = document.getElementById("logoPerso");
+    logo.style.display = "none";
+    let count = document.getElementById("likesCount");
+    count.style.display = "none";
+  }
+
   window.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
       console.log(e.key);
-      previousImg();
       attribuerFocusPrev();
+      previousImg();
     }
   });
   window.addEventListener("keydown", function (e) {
     if (e.key === "ArrowRight") {
       console.log(e.key);
-      nextImg();
       attribuerFocusNext();
+      nextImg();
     }
   });
 }

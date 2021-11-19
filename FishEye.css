@@ -204,7 +204,7 @@ h1 {
 .path {
   height: 350px;
   width: 350px;
-  object-fit: cover;
+  object-fit: fill;
   left: 0px;
   top: 0px;
   border-radius: 5px;
