@@ -791,22 +791,18 @@ h1 {
 
 /*  Small devices (landscape phones, 576px and up)* */
 
-@media all and (max-width: 576px) {
+@media all and (min-width: 256px) {
   body {
     margin: 0;
   }
 
   .logo {
-    width: 150px;
-    height: 37.5px;
-    margin-left: 20px;
+    width: 100px;
+    height: 26.5px;
+    margin-left: 10px;
   }
 
   .logo_h1 {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
     margin-top: 40px;
   }
 
@@ -816,40 +812,40 @@ h1 {
     width: 145px;
     color: #911c1c;
     font-family: DM Sans;
-    font-size: 16px;
+    font-size: 7px;
     font-weight: 400;
+    margin-top: -21px;
+    margin-left: 230px;
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    height: 50px;
-    width: 450px;
+    width: 100%;
     padding-left: 0px;
-    margin-top: 109px;
-    margin-left: 39px;
+    margin-top: 40px;
     border-radius: 11px;
     color: #911c1c;
     list-style: none;
     align-items: center;
   }
 
-  .navigation {
-    width: 100%;
-  }
-
-  .hash {
+  .hash,
+  .tagsTab {
     font-family: DM Sans;
     font-weight: 500;
-    font-size: 12px;
-    height: 22px;
-    width: 100px;
+    font-size: 7px;
+    width: 50px;
     border-radius: 11px;
     border: 0.5px solid #c4c4c4;
     text-align: center;
     margin-left: 10px;
     margin-bottom: 10px;
+  }
+
+  .navigation {
+    width: 100%;
   }
 
   #photographes {
@@ -873,8 +869,8 @@ h1 {
   }
 
   .vignette {
-    width: 230px;
-    height: 230px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
   }
 
@@ -931,23 +927,70 @@ h1 {
     margin-right: 20px;
   }
 }
+@media all and (min-width: 375px) {
+  .logo_h1 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    width: 85%;
+  }
 
-/* // Medium devices (tablets, 768px and up)
+  h1 {
+    margin-top: 0px;
+    margin-left: 0px;
+    font-size: 14px;
+  }
+
+  .photographesTagList {
+    margin-left: 0px;
+    margin-top: 15px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 85%;
+  }
+
+  .hash,
+  .tagsTab {
+    font-size: 12px;
+    width: 100px;
+    padding: 2px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  ...;
+  .logo_h1 {
+    width: 100%;
+  }
+
+  .logo {
+    width: 150px;
+    height: 37.5px;
+  }
+
+  h1 {
+    width: 100%;
+    font-size: 20px;
+    margin-left: 530px;
+  }
 }
 
-// Large devices (desktops, 992px and up)
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  ...;
+  .navigation {
+    margin-top: -70px;
+    margin-left: 90px;
+  }
 }
 
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  ...;
-}
+/* // X-Large devices (large desktops, 1200px and up) */
+/* @media (min-width: 1200px) {
 
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {
+
+} */
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+/* @media (min-width: 1400px) {
   ...;
 } */
