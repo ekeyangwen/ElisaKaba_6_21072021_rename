@@ -19,6 +19,7 @@ function tabFilter() {
     event.addEventListener("click", function (e) {
       e.preventDefault();
       chooseTag(e.target.innerHTML);
+      console.log(e.target.innerHTML);
     });
   });
 }
@@ -26,13 +27,15 @@ function tabFilter() {
 tabFilter();
 
 function chooseTag(e) {
-  let tags = document.querySelectorAll(".photographesTagList");
+  let tagsTab = document.querySelectorAll(".tagsTab");
   let vignettes = document.querySelectorAll(".vignettePhotographes");
 
   vignettes.forEach((vignette) => {
     let includeResult = vignette.innerHTML.includes(e);
+    console.log(vignette.innerHTML);
+    console.log(includeResult);
 
-    tags.forEach(function () {
+    tagsTab.forEach(function () {
       if (includeResult === false) {
         vignette.style.display = "none";
       } else {
