@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0rem;
 }
 
@@ -504,7 +504,7 @@ h1 {
   margin-bottom: 20px;
   border: none;
 } */
-
+/* 
 .btn-submit {
   height: 69px;
   width: 170px;
@@ -787,3 +787,88 @@ h1 {
   text-align: left;
   align-self: flex-start;
 }
+*/
+
+/*  Small devices (landscape phones, 576px and up)* */
+
+@media all and (max-width: 576px) {
+  body {
+    margin: 0;
+  }
+
+  .logo {
+    width: 150px;
+    height: 37.5px;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 50px;
+    width: 450px;
+    padding-left: 0px;
+    margin-top: 109px;
+    margin-left: 39px;
+    border-radius: 11px;
+    color: #911c1c;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navigation {
+    width: 100%;
+  }
+
+  .hash {
+    font-family: DM Sans;
+    font-weight: 500;
+    font-size: 12px;
+    height: 22px;
+    width: 100px;
+    border-radius: 11px;
+    border: 0.5px solid #c4c4c4;
+    text-align: center;
+  }
+
+  .vignettePhotographes {
+    height: 310px;
+    width: 200px;
+    margin-left: 88px;
+    margin-top: 205px;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .vignette {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  ...;
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  ...;
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  ...;
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+  ...;
+} */

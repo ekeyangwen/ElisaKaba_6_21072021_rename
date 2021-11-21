@@ -82,13 +82,25 @@ const infosAndMedia = () => {
   // redirection tags photographes vers page d'accueil filtrée par tags
   let tagsTab = document.querySelectorAll(".tagsTab");
   tagsTab.forEach((tag) => {
-    tag.addEventListener("click", redirectionJavascript);
+    tag.addEventListener("click", findURL);
     // tag.addEventListener("click", tabFilter);
   });
 
-  function redirectionJavascript() {
-    document.location.href = "/index.html";
+  // function redirectionJavascript() {
+  //   document.location.href = "/index.html";
+  // }
+  let tagsTri;
+  function findURL(data) {
+    let paramsString = window.location.search;
+    searchParams = new URLSearchParams(paramsString);
+    searchParams.getAll("html");
+    searchParams.forEach((params) => {
+      console.log(data.photographers);
+      tagsTri = data.photographers.filter((tag) => tag.tags == params);
+    });
+    return tagsTri;
   }
+
   // function tabFilter(e) {
   //   e.preventDefault();
   //   let tagsTab = document.querySelectorAll(".tagsTab");
