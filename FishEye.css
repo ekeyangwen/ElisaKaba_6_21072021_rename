@@ -468,7 +468,7 @@ h1 {
   border: none;
 }
 
-.first-text-control[data-error-visible="true"],
+.first-text-controldata-error-visible="true"],
 .last-text-control[data-error-visible="true"],
 .mail-text-control[data-error-visible="true"],
 .mess-text-control[data-error-visible="true"] {
@@ -796,26 +796,30 @@ h1 {
     margin: 0;
   }
 
-  .logo {
+  #logoPerso {
     width: 100px;
     height: 26.5px;
     margin-left: 10px;
-  }
-
-  .logo_h1 {
     margin-top: 40px;
   }
 
+  .logo_h1 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+  }
+
   h1 {
+    align-self: flex-end;
     margin-top: 11px;
     height: 18px;
     width: 145px;
     color: #911c1c;
     font-family: DM Sans;
-    font-size: 7px;
+    font-size: 15px;
     font-weight: 400;
-    margin-top: -21px;
-    margin-left: 230px;
+    margin-top: 4px;
   }
 
   ul {
@@ -828,7 +832,7 @@ h1 {
     border-radius: 11px;
     color: #911c1c;
     list-style: none;
-    align-items: center;
+    justify-content: center;
   }
 
   .hash,
@@ -842,6 +846,12 @@ h1 {
     text-align: center;
     margin-left: 10px;
     margin-bottom: 10px;
+  }
+
+  .tagsTab {
+    font-size: 11px;
+    padding: 5px;
+    margin-left: 4px;
   }
 
   .navigation {
@@ -874,7 +884,8 @@ h1 {
     border-radius: 50%;
   }
 
-  .name {
+  .name,
+  .namePerso {
     height: 47px;
     width: 301px;
     margin-left: 21px;
@@ -890,13 +901,16 @@ h1 {
     color: #d3573c;
   }
 
-  .city {
+  .city,
+  .cityPerso {
+    font-family: DM Sans;
     font-size: 13px;
     margin-top: 2px;
     margin-bottom: 0px;
   }
 
-  .tagline {
+  .tagline,
+  .taglinePerso {
     font-family: DM Sans;
     font-size: 10px;
     font-style: normal;
@@ -906,6 +920,7 @@ h1 {
     text-align: center;
     margin-bottom: 0px;
     margin-top: 2px;
+    color: #757575;
   }
 
   .price {
@@ -919,31 +934,164 @@ h1 {
     letter-spacing: 0em;
     text-align: center;
   }
-  .photographesTagList {
+  .photographesTagList,
+  .photographesTagListPerso {
     margin: 10px;
     justify-content: center;
   }
-  .tagsTab {
-    margin-right: 20px;
+
+  .persoPhoto {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 500px;
+  }
+
+  .vignettePerso {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: -70px;
+    margin-right: 5px;
+  }
+
+  .namePerso,
+  .cityPerso,
+  .taglinePerso,
+  .photographesTagListPerso {
+    margin: 5px;
+    text-align: start;
+  }
+
+  .photographesTagListPerso {
+    justify-content: start;
+  }
+
+  #persoContactBtn {
+    position: fixed;
+    height: 35px;
+    width: 170px;
+    border-radius: 5px;
+    background: #911c1c;
+    color: white;
+    font-family: DM Sans;
+    font-weight: 500;
+    border: none;
+    overflow: auto;
+    margin-top: 200px;
+  }
+
+  .triPhoto {
+    display: none;
+  }
+
+  #pageMedia {
+    margin-top: -230px;
+  }
+
+  .mediaPhotographes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+
+  .path {
+    height: 100%;
+    width: 80%;
+    border-radius: 5px;
+  }
+
+  .infoMedia {
+    display: flex;
+    width: 80%;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .title {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: #901c1c;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+  }
+
+  .likes {
+    font-family: DM Sans;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #901c1c;
+    height: 18px;
+  }
+
+  .fa-heart {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #901c1c;
+  }
+  .dateTri {
+    display: none;
+  }
+
+  .likesBtn {
+    height: 14px;
+    width: 15%;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #modal {
+    display: none;
+  }
+
+  #likesCount {
+    display: none;
+  }
+
+  #boxes {
+    display: none;
+  }
+
+  .lightbox__container,
+  #ligBox {
+    height: 248px;
+    width: 342px;
+    left: 17px;
+    top: 282px;
+    border-radius: 0px;
+  }
+
+  .imgBox,
+  #bigBox {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
   }
 }
 @media all and (min-width: 375px) {
   .logo_h1 {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    width: 85%;
+    width: 100%;
   }
 
   h1 {
-    margin-top: 0px;
-    margin-left: 0px;
     font-size: 14px;
   }
 
   .photographesTagList {
-    margin-left: 0px;
+    margin-left: -7px;
     margin-top: 15px;
     flex-wrap: nowrap;
     justify-content: center;
@@ -959,32 +1107,36 @@ h1 {
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .logo_h1 {
-    width: 100%;
-  }
-
-  .logo {
+@media all and (min-width: 768px) {
+  #logoPerso {
     width: 150px;
     height: 37.5px;
   }
 
   h1 {
-    width: 100%;
-    font-size: 20px;
-    margin-left: 530px;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .navigation {
-    margin-top: -70px;
-    margin-left: 90px;
+    align-self: flex-end;
+    font-size: 16px;
   }
 }
 
 /* // X-Large devices (large desktops, 1200px and up) */
+@media all and (min-width: 1200px) {
+  .list {
+    margin-top: -30px;
+  }
+
+  #photographes {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .vignettePhotographes {
+    margin: 100px;
+  }
+}
+
 /* @media (min-width: 1200px) {
 
 

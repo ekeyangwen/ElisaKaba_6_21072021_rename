@@ -361,7 +361,7 @@ function ligthBox() {
     main.style.display = "none";
     let logo = document.getElementById("logoPerso");
     logo.style.display = "none";
-    let lightBox = document.getElementById("lightBox");
+    let lightBox = document.getElementById("boxes");
     lightBox.style.display = "flex";
     lightBox.setAttribute("aria-hidden", false);
     let close = document.getElementById("lightbox__close");
