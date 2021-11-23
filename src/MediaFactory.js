@@ -23,7 +23,7 @@ export class img {
   }
   createHTML() {
     return `<section class="mediaPhotographes">
-    <img class="path" src="${this.path}" alt="${this.alt}">
+    <img class="path" src="${this.path}" alt="${this.alt}" tabindex=0>
      <section class="infoMedia">
     <p class="title">${this.title}</p>    
     <button class="likesBtn" data-like="false">

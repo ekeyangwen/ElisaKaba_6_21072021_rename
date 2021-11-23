@@ -76,9 +76,9 @@ const infosAndMedia = () => {
     });
 
     displayMedia(mediaTries);
+    let imgBox = document.querySelector(".imgBox");
+    imgBox.innerHTML = "";
     ligthBox();
-    nextImg();
-    previousImg();
   }
 
   // redirection tags photographes vers page d'accueil
@@ -152,7 +152,11 @@ const letsModal = function () {
     modalbg.style.display = "flex";
     modalbg.setAttribute("aria-hidden", false);
     modalbg.removeAttribute("aria-modal");
-    close.addEventListener("click", closeModal);
+    close.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeModal();
+      reset();
+    });
     close.setAttribute("aria-hidden", false);
     cross.setAttribute("aria-hidden", false);
     likesCount.style.display = "none";
@@ -186,11 +190,11 @@ const letsModal = function () {
   window.addEventListener("keydown", function (e) {
     console.log(e.key);
     if (e.key === "Escape" || e.key === "Esc") {
-      closeModal(e);
+      closeModal();
       reset();
     }
     if (e.key === "Enter") {
-      closeModal();
+      validation();
       reset();
     }
   });
@@ -289,10 +293,14 @@ const letsModal = function () {
 
   // création de l'event pour validation
   let submitBtn = document.querySelector(".btn-submit");
-  submitBtn.addEventListener("click", validation); //evennement sur le bouton submit
+  submitBtn.addEventListener("click", validation); //evennement sur le bouton submit{
+  submitBtn.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      validation();
+    }
+  });
 
-  function validation(e) {
-    e.preventDefault(); //empêche le comportement par defaut (cad envoi du formulaire)
+  function validation() {
     let firstResult = first();
     let lastResult = last();
     let mailResult = mail();
@@ -315,8 +323,20 @@ function ligthBox() {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
-  });
 
+    box.addEventListener("keydown", function (e) {
+      e.preventDefault();
+      if (e.key == "Enter") {
+        launchBox();
+        mediaFilter();
+        chooseMedia();
+        let lightbox = document.querySelectorAll(".lightbox__container");
+        lightbox.forEach((box) => {
+          box.classList.toggle("hiddenImg");
+        });
+      }
+    });
+  });
   // fonction pour lancer la lightbox
   function launchBox() {
     let main = document.getElementById("mainPhotographe");
@@ -331,11 +351,16 @@ function ligthBox() {
     let lightBox = document.getElementById("lightBox");
     lightBox.style.display = "flex";
     lightBox.setAttribute("aria-hidden", false);
+    let imgBox = document.querySelectorAll(".imgBox");
+    imgBox.forEach((box) => {
+      box.setAttribute("aria-hidden", false);
+    });
   }
 
   // Recupération du code pour source et nom de la photo
-  let imgBox = document.querySelectorAll(".imgBox");
+
   mediaFind.forEach((media) => {
+    let imgBox = document.querySelectorAll(".imgBox");
     let pathMediaBox = new MediaFactory(media);
     imgBox.forEach((box) => {
       box.innerHTML += pathMediaBox.createLightBox();
@@ -387,7 +412,6 @@ function ligthBox() {
 
   // lancer la bonne lightbox
   function chooseMedia(e) {
-    console.log("chooseMedia");
     let boxName = document.querySelectorAll(".boxName");
     boxName.forEach((titre) => {
       let includeMedia = titre.innerHTML.includes(e);
