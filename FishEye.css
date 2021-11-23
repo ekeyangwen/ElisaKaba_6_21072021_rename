@@ -360,13 +360,6 @@ h1 {
   justify-content: center;
 }
 
-#bigBox {
-  width: 1050px;
-  height: 900px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 #lightBox {
   display: none;
@@ -754,12 +747,11 @@ h1 {
   #champ {
     display: flex;
     flex-direction: column;
+    width: 80%;
   }
   #message {
     height: 184px;
-    width: 338px;
-    left: 15px;
-    top: 492px;
+    width: 100%;
     border-radius: 5px;
     margin-left: 20px;
   }
@@ -768,10 +760,9 @@ h1 {
   #last,
   #email {
     height: 52px;
-    width: 338px;
+    width: 100%;
     border-radius: 5px;
     margin-left: 20px;
-    align-self: center;
   }
 
   .first-text-control,
@@ -884,11 +875,12 @@ h1 {
   .fa-times {
     width: 100%;
     height: 100%;
-    font-size: 64px;
+    font-size: 50px;
+    margin-top: 5px;
   }
 
   .fa-times:before {
-    font-size: 64px;
+    font-size: 50px;
   }
 
   .hiddenImg {
@@ -1151,19 +1143,6 @@ h1 {
     padding: 0px;
   }
 
-  #likesCount {
-    display: flex;
-    height: 89px;
-    width: 376px;
-    border-radius: 5px;
-    background-color: #db8876;
-    position: fixed;
-    z-index: 1;
-    top: 838px;
-    padding: 8px;
-    overflow: auto;
-  }
-
   .likesPrice {
     display: flex;
     justify-content: space-between;
@@ -1253,17 +1232,89 @@ h1 {
     justify-content: center;
   }
 
+  .vignettePerso {
+    width: 200px;
+    height: 200px;
+    margin-right: 30px;
+  }
+
   .vignettePhotographes {
     margin: 200px;
   }
+
+  #boxes {
+    width: auto;
+    height: auto;
+    justify-content: center;
+  }
+
+  #bigBox {
+    width: 1050px;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #modalForm {
+    height: 900px;
+    width: 669px;
+    border-radius: 5px;
+    justify-content: center;
+  }
+
+  #modal {
+    align-items: center;
+  }
+
+  .headModal,
+  #champ {
+    margin-left: 50px;
+  }
+
+  .btn-submit {
+    margin-left: 68px;
+    margin-top: 30px;
+    align-self: flex-start;
+    height: 69px;
+    width: 170px;
+    border-radius: 5px;
+  }
+
+  #first,
+  #last,
+  #email,
+  #message {
+    width: 542px;
+    border-radius: 5px;
+  }
+
+  #likesCount {
+    height: 89px;
+    width: 376px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    border-radius: 5px;
+    background-color: #db8876;
+    position: fixed;
+    z-index: 1;
+    top: 838px;
+    padding: 8px;
+    overflow: auto;
+  }
+
+  .likesPrice {
+    margin-top: 30px;
+  }
+
+  #price {
+    font-family: DM Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 3px;
+  }
 }
-
-/* @media (min-width: 1200px) {
-
-
-} */
-
-/* // XX-Large devices (larger desktops, 1400px and up) */
-/* @media (min-width: 1400px) {
-  ...;
-} */
