@@ -77,61 +77,20 @@ const infosAndMedia = () => {
 
     displayMedia(mediaTries);
     ligthBox();
+    nextImg();
+    previousImg();
   }
 
-  // redirection tags photographes vers page d'accueil filtrée par tags
+  // redirection tags photographes vers page d'accueil
   let tagsTab = document.querySelectorAll(".tagsTab");
   tagsTab.forEach((tag) => {
-    tag.addEventListener("click", findURL);
+    tag.addEventListener("click", redirectionJavascript);
     // tag.addEventListener("click", tabFilter);
   });
 
-  // function redirectionJavascript() {
-  //   document.location.href = "/index.html";
-  // }
-  let tagsTri;
-  function findURL(data) {
-    let paramsString = window.location.search;
-    searchParams = new URLSearchParams(paramsString);
-    searchParams.getAll("html");
-    searchParams.forEach((params) => {
-      console.log(data.photographers);
-      tagsTri = data.photographers.filter((tag) => tag.tags == params);
-    });
-    return tagsTri;
+  function redirectionJavascript() {
+    document.location.href = "/index.html";
   }
-
-  // function tabFilter(e) {
-  //   e.preventDefault();
-  //   let tagsTab = document.querySelectorAll(".tagsTab");
-  //   tagsTab.forEach((tag) => {
-  //     tag.addEventListener("click", function (e) {
-  //       e.preventDefault();
-  //       console.log(tag);
-  //       chooseTag(e.target.innerHTML);
-  //     });
-  //   });
-  // }
-
-  // // Tri des vignettes en fonction des tags
-  // function chooseTag(e) {
-  //   e.preventDefault();
-  //   let tags = document.querySelectorAll(".photographesTagList");
-
-  //   let vignettes = document.querySelectorAll(".vignettePhotographes");
-
-  //   vignettes.forEach((vignette) => {
-  //     let includeResult = vignette.innerHTML.includes(e);
-
-  //     tags.forEach(function () {
-  //       if (includeResult === false) {
-  //         vignette.style.display = "none";
-  //       } else {
-  //         vignette.style.display = "flex";
-  //       }
-  //     });
-  //   });
-  // }
 };
 
 // Comptage des likes (incrémentation et décrémentation)
@@ -188,11 +147,14 @@ const letsModal = function () {
     e.preventDefault();
     const modalbg = document.getElementById("modal");
     const close = document.getElementById("modalClose");
+    const cross = document.querySelector(".fa-times");
     const likesCount = document.getElementById("likesCount");
     modalbg.style.display = "flex";
     modalbg.setAttribute("aria-hidden", false);
     modalbg.removeAttribute("aria-modal");
     close.addEventListener("click", closeModal);
+    close.setAttribute("aria-hidden", false);
+    cross.setAttribute("aria-hidden", false);
     likesCount.style.display = "none";
   }
 
@@ -361,11 +323,14 @@ function ligthBox() {
     main.style.display = "none";
     let logo = document.getElementById("logoPerso");
     logo.style.display = "none";
-    let lightBox = document.getElementById("boxes");
-    lightBox.style.display = "flex";
-    lightBox.setAttribute("aria-hidden", false);
+    let boxes = document.getElementById("boxes");
+    boxes.style.display = "flex";
+    boxes.setAttribute("aria-hidden", false);
     let close = document.getElementById("lightbox__close");
     close.style.display = "flex";
+    let lightBox = document.getElementById("lightBox");
+    lightBox.style.display = "flex";
+    lightBox.setAttribute("aria-hidden", false);
   }
 
   // Recupération du code pour source et nom de la photo
@@ -426,6 +391,7 @@ function ligthBox() {
     let boxName = document.querySelectorAll(".boxName");
     boxName.forEach((titre) => {
       let includeMedia = titre.innerHTML.includes(e);
+      console.log(includeMedia);
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
         launchBox();
@@ -433,7 +399,7 @@ function ligthBox() {
     });
   }
 
-  // fonction pour utiliser bouton next et previous- event sur le btn
+  // fonction pour utiliser boutons next et previous event
   function nextImg() {
     let next = document.getElementById("lightbox__next");
     let container = document.querySelectorAll(".lightbox__container");
@@ -477,7 +443,7 @@ function ligthBox() {
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
-      // container[previndex].classList.toggle("hiddenImg");
+      container[previndex].classList.toggle("hiddenImg");
       viderLaPage();
     });
   }

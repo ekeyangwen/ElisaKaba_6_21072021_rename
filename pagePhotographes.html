@@ -44,7 +44,7 @@
               <span class="fermer">Fermer la boite Modale</span>
             </button>
           </div>
-          <div class="champ firstredChamp">
+          <div class="firstredChamp" id="champ">
             <label for="first">Prénom</label>
             <input
               class="first-text-control"
@@ -53,7 +53,7 @@
               name="first"
             />
           </div>
-          <div class="champ lastredChamp">
+          <div class="lastredChamp" id="champ">
             <label for="last">Nom</label>
             <input
               class="last-text-control"
@@ -62,7 +62,7 @@
               name="last"
             />
           </div>
-          <div class="champ mailredChamp">
+          <div class="mailredChamp" id="champ">
             <label for="email">E-mail</label>
             <input
               class="mail-text-control"
@@ -71,7 +71,7 @@
               name="email"
             />
           </div>
-          <div class="champ messredChamp">
+          <div class="messredChamp" id="champ">
             <label for="message">Votre message</label>
             <input
               class="mess-text-control"
@@ -95,10 +95,7 @@
       </aside>
     </div>
     <section id="boxes">
-      <button id="lightbox__close" aria-hidden="true">
-        <i class="fas fa-times" id="crossLightbox" aria-hidden="true"></i>
-        <span class="fermer" aria-hidden="true">Fermer</span>
-      </button>
+     
       <div id="lightBox">
         <button id="lightbox__prev" class="prevImg" aria-hidden="true">
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
@@ -108,7 +105,10 @@
         <button id="lightbox__next" class="nextImg">
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
           <span class="fermer" aria-hidden="true">Suivant</span>
-        </button>
+        </button> <button id="lightbox__close" aria-hidden="true">
+        <i class="fas fa-times" id="crossLightbox" aria-hidden="true"></i>
+        <span class="fermer" aria-hidden="true">Fermer</span>
+      </button>
       </div>
     </section>
     <script type="module" src="./src/pagePhotographes.js"></script>
