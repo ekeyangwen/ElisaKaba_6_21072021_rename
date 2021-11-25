@@ -143,8 +143,7 @@ const letsModal = function () {
   modalBtn.addEventListener("click", attribuerFocus);
 
   // fonction pour afficher la modal formulaire
-  function launchModal(e) {
-    e.preventDefault();
+  function launchModal() {
     const modalbg = document.getElementById("modal");
     const close = document.getElementById("modalClose");
     const cross = document.querySelector(".fa-times");
@@ -192,6 +191,14 @@ const letsModal = function () {
     if (e.key === "Escape" || e.key === "Esc") {
       closeModal();
       reset();
+    }
+  });
+
+  modalBtn.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      reset();
+      launchModal(e);
     }
   });
 
@@ -289,15 +296,17 @@ const letsModal = function () {
 
   // création de l'event pour validation
   let submitBtn = document.querySelector(".btn-submit");
-  submitBtn.addEventListener("click", validation); //evennement sur le bouton submit{
+  submitBtn.addEventListener("click", validation); //evennement sur le bouton submit
   submitBtn.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
       validation(e);
+      reset();
     }
   });
 
-  function validation() {
+  function validation(e) {
+    e.preventDefault();
     let firstResult = first();
     let lastResult = last();
     let mailResult = mail();
@@ -308,6 +317,9 @@ const letsModal = function () {
       mailResult
     ) {
       closeModal(); //on ferme la modal du formulaire
+      console.log(fnElem.value);
+      console.log(lastElem.value);
+      console.log(mailElem.value);
       reset(); //on réinitialise le formulaire
     } else {
       return false;
@@ -323,15 +335,18 @@ function ligthBox() {
   });
 
   function keyEvent() {
-    window.addEventListener("keydown", function (e) {
-      if (e.key == "Enter") {
-        e.preventDefault();
-        let lightbox = document.querySelectorAll(".lightbox__container");
-        lightbox.forEach((box) => {
-          box.classList.toggle("hiddenImg");
-          launchBox();
-        });
-      }
+    let litleBox = document.querySelectorAll(".path");
+    litleBox.forEach((box) => {
+      box.addEventListener("keydown", function (e) {
+        if (e.key == "Enter") {
+          e.preventDefault();
+          let lightbox = document.querySelectorAll(".lightbox__container");
+          lightbox.forEach((box) => {
+            box.classList.toggle("hiddenImg");
+            launchBox();
+          });
+        }
+      });
     });
   }
 
