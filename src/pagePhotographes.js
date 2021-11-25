@@ -193,10 +193,6 @@ const letsModal = function () {
       closeModal();
       reset();
     }
-    if (e.key === "Enter") {
-      validation();
-      reset();
-    }
   });
 
   // Vérification des champs du formulaire
@@ -296,7 +292,8 @@ const letsModal = function () {
   submitBtn.addEventListener("click", validation); //evennement sur le bouton submit{
   submitBtn.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
-      validation();
+      e.preventDefault();
+      validation(e);
     }
   });
 
@@ -323,20 +320,23 @@ function ligthBox() {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
+  });
 
-    box.addEventListener("keydown", function (e) {
-      e.preventDefault();
+  function keyEvent() {
+    window.addEventListener("keydown", function (e) {
       if (e.key == "Enter") {
-        launchBox();
-        mediaFilter();
-        chooseMedia();
+        e.preventDefault();
         let lightbox = document.querySelectorAll(".lightbox__container");
         lightbox.forEach((box) => {
           box.classList.toggle("hiddenImg");
+          launchBox();
         });
       }
     });
-  });
+  }
+
+  keyEvent();
+
   // fonction pour lancer la lightbox
   function launchBox() {
     let main = document.getElementById("mainPhotographe");
@@ -490,19 +490,18 @@ function ligthBox() {
     count.style.display = "none";
   }
 
-  window.addEventListener("keydown", function (e) {
+  let next = document.getElementById("lightbox__next");
+  next.addEventListener("keydown", function (e) {
     if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      console.log(e.key);
-      attribuerFocusPrev();
-      previousImg();
-    }
-  });
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") {
-      console.log(e.key);
       attribuerFocusNext();
       nextImg();
+    }
+  });
+  let prev = document.getElementById("lightbox__prev");
+  prev.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") {
+      attribuerFocusPrev();
+      previousImg();
     }
   });
 }

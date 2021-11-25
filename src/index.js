@@ -22,6 +22,16 @@ function tabFilter() {
       console.log(e.target.innerHTML);
     });
   });
+
+  hash.forEach((event) => {
+    event.addEventListener("keydown", function (e) {
+      if (e.key == "Enter") {
+        e.preventDefault();
+        chooseTag(e.target.innerHTML);
+        console.log(e.target.innerHTML);
+      }
+    });
+  });
 }
 
 tabFilter();

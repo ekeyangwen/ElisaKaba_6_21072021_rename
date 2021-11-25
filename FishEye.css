@@ -910,11 +910,19 @@ h1 {
     display: flex;
   }
 
+  .imgBox {
+    margin-top: 60px;
+  }
+
+  #bigBox {
+    height: 800px;
+    width: 950px;
+    border-radius: 5px;
+  }
   #lightBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 1000px;
   }
 
   #lightbox__close {
@@ -1071,7 +1079,7 @@ h1 {
 
   .vignettePerso {
     height: 200px;
-    width: 245px;
+    width: 200px;
     left: 0px;
     top: 0px;
     border-radius: 50%;
@@ -1145,6 +1153,35 @@ h1 {
     color: #901c1c;
   }
 
+  #likesCount {
+    height: 89px;
+    width: 376px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    border-radius: 5px;
+    background-color: #db8876;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    padding: 8px;
+    overflow: auto;
+  }
+
+  .likesPrice {
+    margin-top: 30px;
+  }
+
+  #price {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 3px;
+  }
   .likesBtn {
     padding: 0px;
   }
@@ -1159,6 +1196,7 @@ h1 {
     align-items: center;
     height: 31px;
     width: 87px;
+    margin-top: -15px;
   }
 
   #compteur {
@@ -1205,7 +1243,7 @@ h1 {
     justify-content: space-between;
     flex-flow: row wrap;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 15px;
   }
 
   .vignettePerso {
@@ -1251,8 +1289,7 @@ h1 {
   }
 
   #bigBox {
-    width: 1050px;
-    height: 900px;
+    object-fit: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1288,36 +1325,5 @@ h1 {
   #message {
     width: 542px;
     border-radius: 5px;
-  }
-
-  #likesCount {
-    height: 89px;
-    width: 376px;
-    border-radius: 5px;
-    align-items: center;
-    display: flex;
-    border-radius: 5px;
-    background-color: #db8876;
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    right: 0;
-    padding: 8px;
-    overflow: auto;
-  }
-
-  .likesPrice {
-    margin-top: 30px;
-  }
-
-  #price {
-    font-family: DM Sans;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 31px;
-    letter-spacing: 0em;
-    text-align: center;
-    margin-top: 3px;
   }
 }
