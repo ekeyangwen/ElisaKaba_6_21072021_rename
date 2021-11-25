@@ -392,6 +392,8 @@ function ligthBox() {
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
     logo.style.display = "block";
+    let likesCount = document.getElementById("likesCount");
+    likesCount.style.display = "flex";
     let lightBox = document.getElementById("lightBox");
     lightBox.style.display = "none";
     lightBox.setAttribute("aria-hidden", true);
