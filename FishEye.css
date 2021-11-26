@@ -168,7 +168,7 @@
   .vignettePerso {
     object-fit: cover;
     height: 100px;
-    width: 130px;
+    width: 100px;
     border-radius: 50%;
     margin-left: 11px;
     margin-right: 5px;
@@ -217,7 +217,7 @@
 
   .infoMedia {
     display: flex;
-    width: 100%;
+    width: 80%;
     align-self: center;
     flex-direction: row;
     justify-content: space-between;
@@ -573,6 +573,10 @@
     width: 86px;
     padding: 2px;
   }
+
+  .infoMedia {
+    width: 90%;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -673,7 +677,6 @@
   }
   .mediaPhotographes {
     height: 500px;
-    margin-bottom: 50px;
     width: auto;
   }
 
@@ -684,7 +687,6 @@
 
   .triPhoto {
     display: flex;
-    margin-left: 50px;
   }
 
   #choixTri {
@@ -724,8 +726,8 @@
   }
 
   #likesCount {
-    height: 89px;
-    width: 376px;
+    height: 60px;
+    width: 330px;
     border-radius: 5px;
     align-items: center;
     display: flex;

@@ -304,6 +304,13 @@ const letsModal = function () {
       reset();
     }
   });
+  let champ = document.getElementById("champ");
+  champ.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault;
+      validation(e);
+    }
+  });
 
   function validation(e) {
     e.preventDefault();
