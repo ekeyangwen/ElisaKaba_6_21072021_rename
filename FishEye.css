@@ -31,7 +31,7 @@
     width: 145px;
     color: #911c1c;
     font-family: DM Sans;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 900;
     margin-top: 4px;
   }
@@ -88,7 +88,7 @@
     align-content: center;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
 
   .vignette {
@@ -837,7 +837,7 @@
   }
 
   .mediaPhotographes {
-    margin: 50px;
+    width: 30%;
   }
 
   #photographes {

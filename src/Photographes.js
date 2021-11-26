@@ -13,8 +13,8 @@ export class photographe {
   createVignette() {
     return `
     <section class="vignettePhotographes">
-        <a class="pagePhoto" href="../pagePhotographes.html?id=${this.id}">
-        <img  class ="vignette" src=${this.portrait} alt=${this.alt}>
+        <a class="pagePhoto" href="./pagePhotographes.html?id=${this.id}">
+        <img  class ="vignette" src="${this.portrait}" alt="${this.alt}">
        </a>
             <p class="name">${this.name}</p>
             <p class="city">${this.city}, ${this.country}</p>
@@ -41,7 +41,9 @@ export class photographe {
            
       </section>
       <button id="persoContactBtn">Contactez-moi</button>
-        <img class="vignettePerso" src=${this.portrait} alt=${this.alt}></img>
+        <img class="vignettePerso" src="${this.portrait}" alt="${
+      this.alt
+    }""></img>
     </section>
   <section class="triPhoto">
 
