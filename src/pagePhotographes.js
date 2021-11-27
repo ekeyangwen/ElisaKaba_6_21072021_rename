@@ -180,8 +180,8 @@ const letsModal = function () {
     modalForm.removeEventListener("click", closeModal);
     const mainPhotographe = document.getElementById("mainPhotographe");
     mainPhotographe.style.display = "block";
-    const likesCount = document.getElementById("likesCount");
-    likesCount.style.display = "block";
+    // const likesCount = document.getElementById("likesCount");
+    // likesCount.style.display = "block";
     reset();
   }
 
@@ -399,8 +399,8 @@ function ligthBox() {
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
     logo.style.display = "block";
-    let likesCount = document.getElementById("likesCount");
-    likesCount.style.display = "flex";
+    // let likesCount = document.getElementById("likesCount");
+    // likesCount.style.display = "flex";
     let lightBox = document.getElementById("lightBox");
     lightBox.style.display = "none";
     lightBox.setAttribute("aria-hidden", true);
@@ -491,7 +491,10 @@ function ligthBox() {
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
-      container[previndex].classList.toggle("hiddenImg");
+      container[0].classList.toggle("hiddenImg");
+
+      console.log(container[0]);
+
       viderLaPage();
     });
   }
