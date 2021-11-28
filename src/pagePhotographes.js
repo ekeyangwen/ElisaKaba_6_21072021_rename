@@ -483,6 +483,7 @@ function ligthBox() {
       for (let i = 0; i < container.length; i++) {
         if (!container[i].classList.contains("hiddenImg")) {
           previndex = i;
+          console.log(previndex);
         }
         if (previndex === 0) {
           console.log(container[previndex]);
@@ -491,9 +492,7 @@ function ligthBox() {
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
-      container[0].classList.toggle("hiddenImg");
-
-      console.log(container[0]);
+      container[previndex].classList.toggle("hiddenImg");
 
       viderLaPage();
     });
