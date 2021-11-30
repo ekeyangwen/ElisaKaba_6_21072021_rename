@@ -156,7 +156,7 @@
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    margin-left: 75px;
+    margin-left: 10px;
   }
 
   .photographesTagList,
@@ -223,7 +223,7 @@
   .path {
     object-fit: cover;
     height: 100%;
-    width: 80%;
+    width: 100%;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -231,6 +231,7 @@
   .infoMedia {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
 
   .title {
@@ -531,6 +532,7 @@
     border: none;
     background-color: transparent;
     color: #911c1c;
+    margin-left: -30px;
   }
   #lightbox__next,
   #lightbox__prev {
@@ -681,7 +683,6 @@
 
   .mediaPhotographes {
     margin-top: 50px;
-    width: 100%;
   }
 
   .fa-chevron-right,
@@ -718,7 +719,7 @@
   }
   .mediaPhotographes {
     height: 500px;
-    width: auto;
+    width: 30%;
   }
 
   .persoPhoto {
@@ -865,7 +866,7 @@
 
   .path {
     height: 300px;
-    width: 350px;
+    width: 100%;
     left: 0px;
     top: 0px;
     border-radius: 5px;

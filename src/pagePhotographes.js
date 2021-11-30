@@ -159,6 +159,7 @@ const letsModal = function () {
     close.setAttribute("aria-hidden", false);
     cross.setAttribute("aria-hidden", false);
     likesCount.style.display = "none";
+    attribuerFocus();
   }
 
   //création de la fonction reset pour réinitialiser tout le formulaire
@@ -186,8 +187,8 @@ const letsModal = function () {
     modalForm.removeEventListener("click", closeModal);
     const mainPhotographe = document.getElementById("mainPhotographe");
     mainPhotographe.style.display = "block";
-    // const likesCount = document.getElementById("likesCount");
-    // likesCount.style.display = "block";
+    const likesCount = document.getElementById("likesCount");
+    likesCount.style.display = "block";
     reset();
   }
 
@@ -346,8 +347,17 @@ function ligthBox() {
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
   });
+  console.log(litleBox);
   litleBox.forEach((box) => {
-    box.addEventListener("keydown", mediaFilter);
+    console.log(box);
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        chooseMedia(e);
+        mediaFilter(e);
+
+        launchBox(e);
+      }
+    });
   });
 
   // fonction pour lancer la lightbox
@@ -430,6 +440,7 @@ function ligthBox() {
     let boxName = document.querySelectorAll(".boxName");
     boxName.forEach((titre) => {
       let includeMedia = titre.innerHTML.includes(e);
+      console.log(titre.innerHTML);
       console.log(includeMedia);
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
