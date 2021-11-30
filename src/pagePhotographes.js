@@ -165,6 +165,12 @@ const letsModal = function () {
   function reset() {
     const modalForm = document.getElementById("modalForm");
     modalForm.reset();
+    firstRedBorderForm.removeAttribute("data-error", ""); //suppression du message d'erreur
+    firstRed.removeAttribute("data-error-visible", "false"); // supression de la mise en forme CSS
+    lastRedBorderForm.removeAttribute("data-error", "");
+    lastRed.removeAttribute("data-error-visible", "false");
+    mailRedBorderForm.removeAttribute("data-error", "");
+    mailRed.removeAttribute("data-error-visible", "false");
   }
 
   // Fermeture de la modal
@@ -189,8 +195,8 @@ const letsModal = function () {
   window.addEventListener("keydown", function (e) {
     console.log(e.key);
     if (e.key === "Escape" || e.key === "Esc") {
-      closeModal();
       reset();
+      closeModal();
     }
   });
 
@@ -340,24 +346,9 @@ function ligthBox() {
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
   });
-
-  function keyEvent() {
-    let litleBox = document.querySelectorAll(".path");
-    litleBox.forEach((box) => {
-      box.addEventListener("keydown", function (e) {
-        if (e.key == "Enter") {
-          e.preventDefault();
-          let lightbox = document.querySelectorAll(".lightbox__container");
-          lightbox.forEach((box) => {
-            box.classList.toggle("hiddenImg");
-            launchBox();
-          });
-        }
-      });
-    });
-  }
-
-  keyEvent();
+  litleBox.forEach((box) => {
+    box.addEventListener("keydown", mediaFilter);
+  });
 
   // fonction pour lancer la lightbox
   function launchBox() {
@@ -486,13 +477,16 @@ function ligthBox() {
           console.log(previndex);
         }
         if (previndex === 0) {
-          console.log(container[previndex]);
+          console.log(previndex);
           container[previndex].classList.toggle("hiddenImg");
           previndex = container.length;
         }
       }
       container[previndex - 1].classList.toggle("hiddenImg");
-      container[previndex].classList.toggle("hiddenImg");
+
+      if (previndex !== container.length) {
+        container[previndex].classList.toggle("hiddenImg");
+      }
 
       viderLaPage();
     });

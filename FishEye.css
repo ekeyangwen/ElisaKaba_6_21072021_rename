@@ -5,6 +5,11 @@
     margin: 0;
   }
 
+  #mainPhotographe,
+  #main {
+    max-width: 1440px;
+  }
+
   :focus {
     outline: none !important;
     border: 1px solid #db8876;
@@ -225,9 +230,6 @@
 
   .infoMedia {
     display: flex;
-    width: 80%;
-    align-self: center;
-    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -291,7 +293,7 @@
   #modalForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100%;
     width: 100%;
     left: 0px;
@@ -317,12 +319,24 @@
     font-size: 20px;
     font-family: DM Sans;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: 0em;
     text-align: left;
     color: #312e2e;
     margin-left: 20px;
     align-self: flex-start;
+  }
+
+  .trier {
+    font-size: 20px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #312e2e;
+    margin-left: 20px;
+    align-self: center;
   }
 
   #champ {
@@ -472,12 +486,15 @@
 
   #boxes {
     display: none;
-    display: flex;
     justify-content: center;
   }
 
   .lightbox__container {
-    border-radius: 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
   }
 
   .imgBox,
@@ -487,19 +504,18 @@
   }
 
   .imgBox {
-    margin-top: 60px;
-    width: 60%;
+    align-self: center;
   }
 
   #bigBox {
     width: 100%;
+    height: 80%;
     border-radius: 5px;
     margin: 0px;
+    object-fit: cover;
   }
   #lightBox {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   #lightbox__close {
@@ -521,8 +537,7 @@
     display: block;
     color: #911c1c;
     border: none;
-    width: 50px;
-    height: 100%;
+    width: 10%;
     font-size: 25px;
     z-index: 6;
     opacity: 0.3;
@@ -579,12 +594,14 @@
     padding: 2px;
   }
 
-  .infoMedia {
-    width: 78%;
-  }
-
   .likes {
     margin-right: 10px;
+  }
+
+  #lightBox {
+    height: 900px;
+    width: 1050px;
+    border-radius: 5px;
   }
 }
 
@@ -664,6 +681,15 @@
 
   .mediaPhotographes {
     margin-top: 50px;
+    width: 100%;
+  }
+
+  .fa-chevron-right,
+  .fa-chevron-left {
+    font-size: 50px;
+  }
+  .boxName {
+    font-size: 25px;
   }
 }
 
@@ -678,6 +704,7 @@
   #persoContactBtn {
     position: absolute;
     margin-top: 20px;
+    margin-left: 100px;
   }
 
   h1 {
@@ -696,6 +723,8 @@
 
   .triPhoto {
     display: flex;
+    margin-top: 30px;
+    margin-left: 30px;
   }
 
   #choixTri {
@@ -707,7 +736,7 @@
     font-family: DM Sans;
     font-size: 18px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
@@ -836,52 +865,11 @@
     top: 0px;
     border-radius: 5px;
   }
-}
 
-/* // X-Large devices (large desktops, 1200px and up) */
-@media all and (min-width: 1200px) {
-  header {
-    margin: 20px;
-  }
-  .list {
-    margin-top: -30px;
-  }
-
-  .mediaPhotographes {
-    width: 30%;
-  }
-
-  #photographes {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .vignettePerso {
-    margin-right: 30px;
-  }
-
-  .vignettePhotographes {
-    margin: 120px;
-  }
-
-  #boxes {
-    width: auto;
-    height: auto;
-    justify-content: center;
-  }
-
-  #bigBox {
-    object-fit: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   #modalForm {
     height: 900px;
     width: 669px;
     border-radius: 5px;
-    justify-content: center;
   }
 
   #modal {
@@ -908,11 +896,52 @@
   #message {
     width: 542px;
     border-radius: 5px;
+    align-self: flex-start;
+  }
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media all and (min-width: 1200px) {
+  header {
+    margin: 20px;
+  }
+  .list {
+    margin-top: -30px;
+  }
+
+  .mediaPhotographes {
+    width: 30%;
+  }
+
+  #photographes {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .vignettePerso {
+    margin-right: 30px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .vignettePhotographes {
+    margin: 120px;
+  }
+
+  #boxes {
+    width: auto;
+    height: auto;
+    justify-content: center;
+  }
+
+  #bigBox {
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 @media all and (min-width: 1440px) {
-  .infoMedia {
-    width: 70%;
-  }
 }
