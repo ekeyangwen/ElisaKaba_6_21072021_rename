@@ -78,7 +78,7 @@ const infosAndMedia = () => {
     displayMedia(mediaTries);
     let imgBox = document.querySelector(".imgBox");
     imgBox.innerHTML = "";
-    ligthBox();
+    lightBox();
   }
 
   // redirection tags photographes vers page d'accueil
@@ -135,7 +135,7 @@ const letsModal = function () {
 
   //  fonction pour donner le focus à la modal
   function attribuerFocus() {
-    document.getElementById("modal").focus();
+    document.getElementById("modalForm").focus();
   }
 
   let modalBtn = document.getElementById("persoContactBtn");
@@ -319,6 +319,7 @@ const letsModal = function () {
     }
   });
 
+  //fonction de validation des champs de la modal
   function validation(e) {
     e.preventDefault();
     let firstResult = first();
@@ -342,19 +343,18 @@ const letsModal = function () {
 };
 
 // création de l'event lancement de la lightbox
-function ligthBox() {
+function lightBox() {
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
   });
-  console.log(litleBox);
-  litleBox.forEach((box) => {
-    console.log(box);
-    box.addEventListener("keydown", function (e) {
+  let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
+  mediaPhotographes.forEach((media) => {
+    media.children[0].addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
-        chooseMedia(e);
-        mediaFilter(e);
-
+        e.preventDefault();
+        let mediaBox = media.children[1].children[0].innerHTML;
+        chooseMedia(mediaBox);
         launchBox(e);
       }
     });
@@ -424,6 +424,7 @@ function ligthBox() {
   function mediaFilter() {
     let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
     mediaPhotographes.forEach((media) => {
+      console.log(media);
       media.children[0].addEventListener("click", function (e) {
         e.preventDefault();
         let mediaBox = media.children[1].children[0].innerHTML;
@@ -437,6 +438,7 @@ function ligthBox() {
 
   // lancer la bonne lightbox
   function chooseMedia(e) {
+    console.log("media done");
     let boxName = document.querySelectorAll(".boxName");
     boxName.forEach((titre) => {
       let includeMedia = titre.innerHTML.includes(e);
@@ -544,7 +546,7 @@ async function init() {
   infosAndMedia(dataFiltre);
   count(data);
   letsModal(dataFiltre);
-  ligthBox(dataFiltre);
+  lightBox(dataFiltre);
 }
 
 init();

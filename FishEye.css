@@ -8,6 +8,7 @@
   #mainPhotographe,
   #main {
     max-width: 1440px;
+    margin: auto;
   }
 
   :focus {
@@ -199,6 +200,7 @@
     border: none;
     overflow: auto;
     bottom: 40px;
+    z-index: 2;
   }
 
   .triPhoto {
@@ -226,6 +228,7 @@
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1;
   }
 
   .infoMedia {
@@ -545,6 +548,8 @@
     opacity: 0.3;
     cursor: pointer;
     background-color: transparent;
+    height: 20%;
+    align-self: center;
   }
 
   #lightbox__next:hover,
@@ -602,7 +607,6 @@
 
   #lightBox {
     height: 900px;
-    width: 1050px;
     border-radius: 5px;
   }
 }
@@ -691,11 +695,6 @@
   }
   .boxName {
     font-size: 25px;
-  }
-
-  .lightbox__container {
-    width: 800px;
-    height: 800px;
   }
 }
 
@@ -903,6 +902,11 @@
     width: 542px;
     border-radius: 5px;
     align-self: flex-start;
+  }
+
+  .lightbox__container {
+    width: 800px;
+    height: 800px;
   }
 }
 
