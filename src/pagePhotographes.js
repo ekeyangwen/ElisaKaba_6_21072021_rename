@@ -277,7 +277,7 @@ const letsModal = function () {
 
   // (cf first)
   function mail() {
-    const mailRegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,4}$/g;
+    const mailRegExp = /^[a-zA-Z0-7._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,4}$/g;
     let checkmailRegExp = mailRegExp.test(mailElem.value);
     console.log(mailElem.value);
     if (mailElem.value === "") {
@@ -400,8 +400,8 @@ function lightBox() {
     main.style.display = "block";
     let logo = document.getElementById("logoPerso");
     logo.style.display = "block";
-    // let likesCount = document.getElementById("likesCount");
-    // likesCount.style.display = "flex";
+    let likesCount = document.getElementById("likesCount");
+    likesCount.style.display = "flex";
     let lightBox = document.getElementById("lightBox");
     lightBox.style.display = "none";
     lightBox.setAttribute("aria-hidden", true);
@@ -470,8 +470,10 @@ function lightBox() {
           container[index + 1].classList.toggle("hiddenImg");
         }
       }
-      container[index].classList.toggle("hiddenImg");
       container[index + 1].classList.toggle("hiddenImg");
+      if (index !== container.lengt) {
+        container[index].classList.toggle("hiddenImg");
+      }
       viderLaPage();
     });
   }
