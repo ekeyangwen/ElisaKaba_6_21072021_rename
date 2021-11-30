@@ -691,6 +691,11 @@
   .boxName {
     font-size: 25px;
   }
+
+  .lightbox__container {
+    width: 800px;
+    height: 800px;
+  }
 }
 
 /* Medium devices (tablets, 988px and up) */
