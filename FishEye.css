@@ -701,6 +701,16 @@
     height: auto;
     justify-content: center;
   }
+
+  .lightbox__container {
+    width: 500px;
+    height: 500px;
+  }
+
+  #lightbox__close {
+    margin-top: 150px;
+  }
+
   .boxName {
     font-size: 25px;
   }
@@ -825,7 +835,7 @@
 
   #compteur {
     font-family: DM Sans;
-    font-size: 35px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 500;
     line-height: 31px;
