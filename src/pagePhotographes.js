@@ -48,7 +48,6 @@ const infosAndMedia = () => {
 
   // Event et option de tri
   let choix = document.getElementById("choixTri");
-  console.log(choix);
   choix.addEventListener("change", function (e) {
     chooseTri(e.target.value, mediaFind);
   });
@@ -194,7 +193,6 @@ const letsModal = function () {
 
   //  Event sur la touche escape et enter
   window.addEventListener("keydown", function (e) {
-    console.log(e.key);
     if (e.key === "Escape" || e.key === "Esc") {
       reset();
       closeModal();
@@ -424,11 +422,9 @@ function lightBox() {
   function mediaFilter() {
     let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
     mediaPhotographes.forEach((media) => {
-      console.log(media);
       media.children[0].addEventListener("click", function (e) {
         e.preventDefault();
         let mediaBox = media.children[1].children[0].innerHTML;
-        console.log(mediaBox);
         chooseMedia(mediaBox);
       });
     });
@@ -438,12 +434,9 @@ function lightBox() {
 
   // lancer la bonne lightbox
   function chooseMedia(e) {
-    console.log("media done");
     let boxName = document.querySelectorAll(".boxName");
     boxName.forEach((titre) => {
       let includeMedia = titre.innerHTML.includes(e);
-      console.log(titre.innerHTML);
-      console.log(includeMedia);
       if (includeMedia === true) {
         titre.parentElement.classList.toggle("hiddenImg");
         launchBox();
@@ -460,9 +453,10 @@ function lightBox() {
       let index;
       for (let i = 0; i < container.length; i++) {
         if (!container[i].classList.contains("hiddenImg")) {
-          console.log(container.length);
-
+          console.log(container[i].classList.contains("hiddenImg"));
           index = i;
+          console.log(index);
+          console.log(container);
         }
         if (index === container.length - 1) {
           container[index].classList.toggle("hiddenImg");
@@ -471,7 +465,7 @@ function lightBox() {
         }
       }
       container[index + 1].classList.toggle("hiddenImg");
-      if (index !== container.lengt) {
+      if (index !== container.length) {
         container[index].classList.toggle("hiddenImg");
       }
       viderLaPage();

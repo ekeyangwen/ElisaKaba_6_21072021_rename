@@ -491,14 +491,15 @@
   #boxes {
     display: none;
     justify-content: center;
+    align-self: center;
   }
 
   .lightbox__container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 500px;
+    width: 200px;
+    height: 200px;
   }
 
   .imgBox,
@@ -520,6 +521,7 @@
   }
   #lightBox {
     display: flex;
+    height: 900px;
   }
 
   #lightbox__close {
@@ -536,6 +538,7 @@
     background-color: transparent;
     color: #911c1c;
     margin-left: -30px;
+    margin-top: 300px;
   }
   #lightbox__next,
   #lightbox__prev {
@@ -606,7 +609,6 @@
   }
 
   #lightBox {
-    height: 900px;
     border-radius: 5px;
   }
 }
@@ -692,6 +694,12 @@
   .fa-chevron-right,
   .fa-chevron-left {
     font-size: 50px;
+  }
+
+  #boxes {
+    width: auto;
+    height: auto;
+    justify-content: center;
   }
   .boxName {
     font-size: 25px;
@@ -905,6 +913,10 @@
     align-self: flex-start;
   }
 
+  #lightbox__close {
+    margin-top: 0px;
+  }
+
   .lightbox__container {
     width: 800px;
     height: 800px;
@@ -938,12 +950,6 @@
 
   .vignettePhotographes {
     margin: 120px;
-  }
-
-  #boxes {
-    width: auto;
-    height: auto;
-    justify-content: center;
   }
 
   #bigBox {
