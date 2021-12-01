@@ -447,9 +447,9 @@ function lightBox() {
   // fonction pour utiliser boutons next et previous event
   function nextImg() {
     let next = document.getElementById("lightbox__next");
-    let container = document.querySelectorAll(".lightbox__container");
 
     next.addEventListener("click", () => {
+      let container = document.querySelectorAll(".lightbox__container");
       let index;
       for (let i = 0; i < container.length; i++) {
         if (!container[i].classList.contains("hiddenImg")) {
@@ -475,11 +475,9 @@ function lightBox() {
 
   function previousImg() {
     let prev = document.getElementById("lightbox__prev");
-    let container = document.querySelectorAll(".lightbox__container");
-
     prev.addEventListener("click", () => {
+      let container = document.querySelectorAll(".lightbox__container");
       let previndex;
-
       for (let i = 0; i < container.length; i++) {
         if (!container[i].classList.contains("hiddenImg")) {
           previndex = i;
