@@ -77,6 +77,7 @@ const infosAndMedia = () => {
     displayMedia(mediaTries);
     let imgBox = document.querySelector(".imgBox");
     imgBox.innerHTML = "";
+    count();
     lightBox();
   }
 
@@ -115,14 +116,16 @@ function count() {
       }
     });
   });
+}
 
+const price = function () {
   // Récupéation du code pour affichage de prix
   let price = document.getElementById("price");
   infoPerso.forEach((info) => {
     let priceSingle = new photographe(info);
     price.innerHTML += priceSingle.createPrice();
   });
-}
+};
 
 // Création de la modal
 const letsModal = function () {
@@ -539,6 +542,7 @@ async function init() {
   const dataFiltre = newFilter(data);
   infosAndMedia(dataFiltre);
   count(data);
+  price(data);
   letsModal(dataFiltre);
   lightBox(dataFiltre);
 }
