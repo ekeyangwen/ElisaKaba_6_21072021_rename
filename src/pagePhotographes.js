@@ -90,7 +90,7 @@ const infosAndMedia = () => {
   });
 
   function redirectionJavascript() {
-    document.location.href = "/index.html";
+    document.location.href = "./index.html";
   }
 };
 
@@ -138,7 +138,7 @@ const letsModal = function () {
 
   //  fonction pour donner le focus à la modal
   function attribuerFocus() {
-    document.getElementById("modalForm").focus();
+    document.getElementById("modalClose").focus();
   }
 
   let modalBtn = document.getElementById("persoContactBtn");
@@ -151,6 +151,9 @@ const letsModal = function () {
     const close = document.getElementById("modalClose");
     const cross = document.querySelector(".fa-times");
     const likesCount = document.getElementById("likesCount");
+    const pageMedia = document.getElementById("pageMedia");
+    pageMedia.setAttribute("aria-hidden", true);
+    attribuerFocus();
     modalbg.style.display = "flex";
     modalbg.setAttribute("aria-hidden", false);
     modalbg.removeAttribute("aria-modal");
@@ -162,7 +165,6 @@ const letsModal = function () {
     close.setAttribute("aria-hidden", false);
     cross.setAttribute("aria-hidden", false);
     likesCount.style.display = "none";
-    attribuerFocus();
   }
 
   //création de la fonction reset pour réinitialiser tout le formulaire
@@ -170,11 +172,11 @@ const letsModal = function () {
     const modalForm = document.getElementById("modalForm");
     modalForm.reset();
     firstRedBorderForm.removeAttribute("data-error", ""); //suppression du message d'erreur
-    firstRed.removeAttribute("data-error-visible", "false"); // supression de la mise en forme CSS
+    firstRed.removeAttribute("data-error-visible", false); // supression de la mise en forme CSS
     lastRedBorderForm.removeAttribute("data-error", "");
-    lastRed.removeAttribute("data-error-visible", "false");
+    lastRed.removeAttribute("data-error-visible", false);
     mailRedBorderForm.removeAttribute("data-error", "");
-    mailRed.removeAttribute("data-error-visible", "false");
+    mailRed.removeAttribute("data-error-visible", false);
   }
 
   // Fermeture de la modal
@@ -208,6 +210,7 @@ const letsModal = function () {
       e.preventDefault();
       reset();
       launchModal(e);
+      attribuerFocus();
     }
   });
 
@@ -382,8 +385,7 @@ function lightBox() {
     });
   }
 
-  // Recupération du code pour source et nom de la photo
-
+  // Recupération source et nom de la photo pour création du code HTML de la lightbox
   mediaFind.forEach((media) => {
     let imgBox = document.querySelectorAll(".imgBox");
     let pathMediaBox = new MediaFactory(media);
@@ -391,6 +393,32 @@ function lightBox() {
       box.innerHTML += pathMediaBox.createLightBox();
     });
   });
+
+  // fonction pour savoir quelle vignette est cliquée
+  function mediaFilter() {
+    let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
+    mediaPhotographes.forEach((media) => {
+      media.children[0].addEventListener("click", function (e) {
+        e.preventDefault();
+        let mediaBox = media.children[1].children[0].innerHTML;
+        chooseMedia(mediaBox);
+      });
+    });
+  }
+
+  mediaFilter();
+
+  // lancer la bonne lightbox
+  function chooseMedia(e) {
+    let boxName = document.querySelectorAll(".boxName");
+    boxName.forEach((titre) => {
+      let includeMedia = titre.innerHTML.includes(e);
+      if (includeMedia === true) {
+        titre.parentElement.classList.toggle("hiddenImg");
+        launchBox();
+      }
+    });
+  }
 
   // Event pour fermer la lightbox
   let close = document.getElementById("lightbox__close");
@@ -422,119 +450,73 @@ function lightBox() {
     }
   });
 
-  // fonction pour savoir quelle vignette est cliquée
-  function mediaFilter() {
-    let mediaPhotographes = document.querySelectorAll(".mediaPhotographes");
-    mediaPhotographes.forEach((media) => {
-      media.children[0].addEventListener("click", function (e) {
-        e.preventDefault();
-        let mediaBox = media.children[1].children[0].innerHTML;
-        chooseMedia(mediaBox);
-      });
-    });
-  }
+  // Previous et next event
+  let prev = document.getElementById("lightbox__prev");
+  prev.addEventListener("click", previousImg);
+  let next = document.getElementById("lightbox__next");
+  next.addEventListener("click", nextImg);
 
-  mediaFilter();
-
-  // lancer la bonne lightbox
-  function chooseMedia(e) {
-    let boxName = document.querySelectorAll(".boxName");
-    boxName.forEach((titre) => {
-      let includeMedia = titre.innerHTML.includes(e);
-      if (includeMedia === true) {
-        titre.parentElement.classList.toggle("hiddenImg");
-        launchBox();
-      }
-    });
-  }
-
-  // fonction pour utiliser boutons next et previous event
+  //Fonctions pour passer img suivante et précédente
   function nextImg() {
-    let next = document.getElementById("lightbox__next");
-
-    next.addEventListener("click", () => {
-      let container = document.querySelectorAll(".lightbox__container");
-      let index;
-      for (let i = 0; i < container.length; i++) {
-        if (!container[i].classList.contains("hiddenImg")) {
-          console.log(container[i].classList.contains("hiddenImg"));
-          index = i;
-          console.log(index);
-          console.log(container);
-        }
-        if (index === container.length - 1) {
-          container[index].classList.toggle("hiddenImg");
-          index = 0;
-          container[index + 1].classList.toggle("hiddenImg");
-        }
+    let container = document.querySelectorAll(".lightbox__container");
+    let index;
+    for (let i = 0; i < container.length; i++) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        index = i;
+        console.log(index);
       }
-      container[index + 1].classList.toggle("hiddenImg");
-      if (index !== container.length) {
+      if (index === container.length - 1) {
         container[index].classList.toggle("hiddenImg");
+        index = 0;
+        container[index + 1].classList.toggle("hiddenImg");
       }
-      viderLaPage();
-    });
+    }
+    container[index + 1].classList.toggle("hiddenImg");
+    if (index !== container.length) {
+      container[index].classList.toggle("hiddenImg");
+    }
   }
-  nextImg();
 
   function previousImg() {
-    let prev = document.getElementById("lightbox__prev");
-    prev.addEventListener("click", () => {
-      let container = document.querySelectorAll(".lightbox__container");
-      let previndex;
-      for (let i = 0; i < container.length; i++) {
-        if (!container[i].classList.contains("hiddenImg")) {
-          previndex = i;
-          console.log(previndex);
-        }
-        if (previndex === 0) {
-          console.log(previndex);
-          container[previndex].classList.toggle("hiddenImg");
-          previndex = container.length;
-        }
+    let container = document.querySelectorAll(".lightbox__container");
+    let previndex;
+    for (let i = 0; i < container.length; i++) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        previndex = i;
+        console.log(previndex);
       }
-      container[previndex - 1].classList.toggle("hiddenImg");
-
-      if (previndex !== container.length) {
+      if (previndex === 0) {
         container[previndex].classList.toggle("hiddenImg");
+        previndex = container.length;
       }
+    }
+    container[previndex - 1].classList.toggle("hiddenImg");
 
-      viderLaPage();
+    if (previndex !== container.length) {
+      container[previndex].classList.toggle("hiddenImg");
+    }
+  }
+
+  // fonctions pour naviguer avec le clavier pour les btn next et prev
+  function nextEvent() {
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") {
+        nextImg();
+      }
     });
   }
-  previousImg();
 
-  // fonctions pour donner le focus et naviguer avec le clavier pour les btn next et prev
-  function attribuerFocusPrev() {
-    document.getElementById("lightbox__prev").focus();
-  }
-  function attribuerFocusNext() {
-    document.getElementById("lightbox__next").focus();
-  }
+  nextEvent();
 
-  function viderLaPage() {
-    let main = document.getElementById("mainPhotographe");
-    main.style.display = "none";
-    let logo = document.getElementById("logoPerso");
-    logo.style.display = "none";
-    let count = document.getElementById("likesCount");
-    count.style.display = "none";
+  function prevEvent() {
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        previousImg();
+      }
+    });
   }
 
-  let next = document.getElementById("lightbox__next");
-  next.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") {
-      attribuerFocusNext();
-      nextImg();
-    }
-  });
-  let prev = document.getElementById("lightbox__prev");
-  prev.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") {
-      attribuerFocusPrev();
-      previousImg();
-    }
-  });
+  prevEvent();
 }
 
 // fonction globale d'intialisation de toutes les fonctions
