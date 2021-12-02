@@ -306,20 +306,36 @@ const letsModal = function () {
     }
   }
 
-  // création de l'event pour validation
+  // création des ²event pour validation
   let submitBtn = document.querySelector(".btn-submit");
   submitBtn.addEventListener("click", validation); //evennement sur le bouton submit
-  submitBtn.addEventListener("keydown", function (e) {
+
+  let firstControl = document.querySelector(".first-text-control");
+  firstControl.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
       validation(e);
-      reset();
     }
   });
-  let champ = document.getElementById("champ");
-  champ.addEventListener("keydown", function (e) {
+
+  let lastControl = document.querySelector(".last-text-control");
+  lastControl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      validation(e);
+    }
+  });
+  let mailControl = document.querySelector(".mail-text-control");
+  mailControl.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       e.preventDefault;
+      validation(e);
+    }
+  });
+
+  submitBtn.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
       validation(e);
     }
   });
@@ -337,9 +353,6 @@ const letsModal = function () {
       mailResult
     ) {
       closeModal(); //on ferme la modal du formulaire
-      console.log(fnElem.value);
-      console.log(lastElem.value);
-      console.log(mailElem.value);
       reset(); //on réinitialise le formulaire
     } else {
       return false;
