@@ -75,10 +75,11 @@ const infosAndMedia = () => {
     });
 
     displayMedia(mediaTries);
+
     let imgBox = document.querySelector(".imgBox");
     imgBox.innerHTML = "";
     count();
-    lightBox();
+    lightBox(mediaTries);
   }
 
   // redirection tags photographes vers page d'accueil

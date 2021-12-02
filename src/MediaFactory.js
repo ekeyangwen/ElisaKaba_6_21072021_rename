@@ -76,7 +76,7 @@ export class vid {
     return `
 
         <div class="lightbox__container hiddenImg">
-          <video id="bigBox" src="${this.path}" alt="${this.alt}"> </video>
+          <video controls id="bigBox" src="${this.path}" alt="${this.alt}"> </video>
           <p class="boxName">${this.title} </p>
         </div>`;
   }
