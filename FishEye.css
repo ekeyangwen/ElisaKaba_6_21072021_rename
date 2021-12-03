@@ -30,6 +30,12 @@
     margin-top: 40px;
   }
 
+  #logoAccueil {
+    width: 100px;
+    height: 26.5px;
+    margin-left: 10px;
+    margin-top: 40px;
+  }
   .logo_h1 {
     display: flex;
     flex-direction: row;
@@ -673,6 +679,10 @@
     margin-top: 45px;
   }
 
+  #logoAccueil {
+    justify-content: left;
+    margin-top: 45px;
+  }
   #persoContactBtn {
     height: 69px;
     width: 170px;
@@ -724,6 +734,11 @@
     margin-left: 50px;
   }
 
+  #logoAccueil {
+    width: 150px;
+    height: 37.5px;
+    margin-left: 50px;
+  }
   #persoContactBtn {
     position: absolute;
     margin-top: 20px;

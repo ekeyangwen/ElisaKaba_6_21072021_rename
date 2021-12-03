@@ -10,7 +10,7 @@
       "tagline": "Voir le beau dans le quotidien",
       "price": 400,
       "portrait": "./FishEye_Photos/Photographers_ID_Photos/MimiKeel.jpg",
-      "alt": "protrait de Mimi Keel"
+      "alt": "portrait de Mimi Keel"
     },
     {
       "name": "Ellie-Rose Wilkens",
@@ -21,7 +21,7 @@
       "tagline": "Capturer des compositions complexes",
       "price": 250,
       "portrait": "./FishEye_Photos/Photographers_ID_Photos/EllieRoseWilkens.jpg",
-      "alt": "protrait de Ellie-Rose Wilkens"
+      "alt": "portrait de Ellie-Rose Wilkens"
     },
     {
       "name": "Tracy Galindo",
@@ -32,7 +32,7 @@
       "tagline": "Photographe freelance",
       "price": 500,
       "portrait": "./FishEye_Photos/Photographers_ID_Photos/TracyGalindo.jpg",
-      "alt": "protrait de Tracy Galindo"
+      "alt": "portrait de Tracy Galindo"
     },
     {
       "name": "Nabeel Bradford",
@@ -43,7 +43,7 @@
       "tagline": "Toujours aller de l'avant",
       "price": 350,
       "portrait": "./FishEye_Photos/Photographers_ID_Photos/NabeelBradford.jpg",
-      "alt": "protrait de Nabeel Bradford"
+      "alt": "portrait de Nabeel Bradford"
     },
     {
       "name": "Rhode Dubois",
@@ -54,7 +54,7 @@
       "tagline": "Je crée des souvenirs",
       "price": 275,
       "portrait": "./FishEye_Photos/Photographers_ID_Photos/RhodeDubois.jpg",
-      "alt": "portait de Rhode Dubois"
+      "alt": "portrait de Rhode Dubois"
     },
     {
       "name": "Marcel Nikolic",
@@ -64,7 +64,8 @@
       "tags": ["travel", "architecture"],
       "tagline": "Toujours à la recherche de LA photo",
       "price": 300,
-      "portrait": "./FishEye_Photos/Photographers_ID_Photos/MarcelNikolic.jpg"
+      "portrait": "./FishEye_Photos/Photographers_ID_Photos/MarcelNikolic.jpg",
+      "alt": "portrait de Marcel Nikolic"
     }
   ],
   "media": [

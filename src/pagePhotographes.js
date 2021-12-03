@@ -360,8 +360,8 @@ const letsModal = function () {
   }
 };
 
-// création de l'event lancement de la lightbox
-function lightBox() {
+function lightBoxEvent() {
+  // création de l'event lancement de la lightbox
   let litleBox = document.querySelectorAll(".path");
   litleBox.forEach((box) => {
     box.addEventListener("click", launchBox);
@@ -377,12 +377,15 @@ function lightBox() {
       }
     });
   });
+}
+lightBoxEvent();
 
+function lightBox() {
   // fonction pour lancer la lightbox
   function launchBox() {
     let main = document.getElementById("mainPhotographe");
     main.style.display = "none";
-    let logo = document.getElementById("logoPerso");
+    let logo = document.getElementById("logoAccueil");
     logo.style.display = "none";
     let boxes = document.getElementById("boxes");
     boxes.style.display = "flex";
@@ -441,7 +444,7 @@ function lightBox() {
   function closeLightBox() {
     let main = document.getElementById("mainPhotographe");
     main.style.display = "block";
-    let logo = document.getElementById("logoPerso");
+    let logo = document.getElementById("logoAccueil");
     logo.style.display = "block";
     let likesCount = document.getElementById("likesCount");
     likesCount.style.display = "flex";
@@ -514,11 +517,11 @@ function lightBox() {
   function nextEvent() {
     window.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight") {
+        console.log(e.key);
         nextImg();
       }
     });
   }
-
   nextEvent();
 
   function prevEvent() {
@@ -528,7 +531,6 @@ function lightBox() {
       }
     });
   }
-
   prevEvent();
 }
 
