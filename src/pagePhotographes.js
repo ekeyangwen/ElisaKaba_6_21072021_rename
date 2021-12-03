@@ -470,9 +470,16 @@ function lightBox() {
     boxes.setAttribute("aria-hidden", false);
     let close = document.getElementById("lightbox__close");
     close.style.display = "flex";
+    close.setAttribute("aria-hidden", false);
     let lightbox = document.getElementById("lightBox");
     lightbox.style.display = "flex";
     lightbox.setAttribute("aria-hidden", false);
+    let fermer = document.querySelectorAll(".fermer");
+    fermer.forEach((close) => {
+      close.setAttribute("aria-hidden", false);
+    });
+    let prev = document.getElementById("lightbox__prev");
+    prev.setAttribute("aria-hidden", false);
     let imgBox = document.querySelectorAll(".imgBox");
     imgBox.forEach((box) => {
       box.setAttribute("aria-hidden", false);
@@ -517,6 +524,9 @@ function lightBox() {
   // Event pour fermer la lightbox
   let close = document.getElementById("lightbox__close");
   close.addEventListener("click", closeLightBox);
+
+  let crossBox = document.getElementById("crossLightbox");
+  crossBox.addEventListener("keydown", closeLightBox);
 
   // Fermeture de la lightbox
   function closeLightBox() {
