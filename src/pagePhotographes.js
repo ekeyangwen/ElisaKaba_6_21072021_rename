@@ -166,7 +166,6 @@ const letsModal = function () {
     cross.setAttribute("aria-hidden", false);
     likesCount.style.display = "none";
   }
-
   //création de la fonction reset pour réinitialiser tout le formulaire
   function reset() {
     const modalForm = document.getElementById("modalForm");
@@ -360,71 +359,84 @@ const letsModal = function () {
   }
 };
 
-// Previous et next event
-let prev = document.getElementById("lightbox__prev");
-prev.addEventListener("click", previousImg);
-let next = document.getElementById("lightbox__next");
-next.addEventListener("click", nextImg);
+//fonctions events  prev et next de la lightbox
+const eventLightBox = function () {
+  // Previous et next event
+  let prev = document.getElementById("lightbox__prev");
+  prev.addEventListener("click", previousImg);
+  let next = document.getElementById("lightbox__next");
+  next.addEventListener("click", nextImg);
 
-//Fonctions pour passer img suivante et précédente
-function nextImg() {
-  let container = document.querySelectorAll(".lightbox__container");
-  let index;
-  for (let i = 0; i < container.length; i++) {
-    if (!container[i].classList.contains("hiddenImg")) {
-      index = i;
-      console.log(index);
+  //Fonctions pour passer img suivante et précédente
+  function nextImg() {
+    let container = document.querySelectorAll(".lightbox__container");
+    let index;
+    for (let i = 0; i < container.length; i++) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        index = i;
+        console.log(index);
+      }
+      if (index === container.length - 1) {
+        container[index].classList.toggle("hiddenImg");
+        index = 0;
+        container[index + 1].classList.toggle("hiddenImg");
+      }
     }
-    if (index === container.length - 1) {
+    container[index + 1].classList.toggle("hiddenImg");
+    if (index !== container.length) {
       container[index].classList.toggle("hiddenImg");
-      index = 0;
-      container[index + 1].classList.toggle("hiddenImg");
     }
   }
-  container[index + 1].classList.toggle("hiddenImg");
-  if (index !== container.length) {
-    container[index].classList.toggle("hiddenImg");
-  }
-}
 
-function previousImg() {
-  let container = document.querySelectorAll(".lightbox__container");
-  let previndex;
-  for (let i = 0; i < container.length; i++) {
-    if (!container[i].classList.contains("hiddenImg")) {
-      previndex = i;
-      console.log(previndex);
+  function previousImg() {
+    let container = document.querySelectorAll(".lightbox__container");
+    let previndex;
+    for (let i = 0; i < container.length; i++) {
+      if (!container[i].classList.contains("hiddenImg")) {
+        previndex = i;
+        console.log(previndex);
+      }
+      if (previndex === 0) {
+        container[previndex].classList.toggle("hiddenImg");
+        previndex = container.length;
+      }
     }
-    if (previndex === 0) {
+    container[previndex - 1].classList.toggle("hiddenImg");
+
+    if (previndex !== container.length) {
       container[previndex].classList.toggle("hiddenImg");
-      previndex = container.length;
     }
   }
-  container[previndex - 1].classList.toggle("hiddenImg");
 
-  if (previndex !== container.length) {
-    container[previndex].classList.toggle("hiddenImg");
+  // fonctions pour naviguer avec les flèches du clavier
+
+  function isActive() {
+    let boxes = document.getElementById("boxes");
+    if (boxes.classList.contains("isActive") == true) {
+      console.log("Youpi");
+      nextEvent();
+    }
   }
-}
+  isActive();
 
-// fonctions pour naviguer avec le clavier pour les btn next et prev
-function nextEvent() {
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") {
-      nextImg();
-    }
-  });
-}
-nextEvent();
+  function nextEvent() {
+    document.addEventListener("keydown", function (e) {
+      console.log(e.key);
+      if (e.key === "ArrowRight") {
+        nextImg();
+      }
+    });
+  }
 
-function prevEvent() {
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") {
-      previousImg();
-    }
-  });
-}
-prevEvent();
+  function prevEvent() {
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        previousImg();
+      }
+    });
+  }
+  prevEvent();
+};
 
 function lightBox() {
   function lightBoxEvent() {
@@ -458,13 +470,14 @@ function lightBox() {
     boxes.setAttribute("aria-hidden", false);
     let close = document.getElementById("lightbox__close");
     close.style.display = "flex";
-    let lightBox = document.getElementById("lightBox");
-    lightBox.style.display = "flex";
-    lightBox.setAttribute("aria-hidden", false);
+    let lightbox = document.getElementById("lightBox");
+    lightbox.style.display = "flex";
+    lightbox.setAttribute("aria-hidden", false);
     let imgBox = document.querySelectorAll(".imgBox");
     imgBox.forEach((box) => {
       box.setAttribute("aria-hidden", false);
     });
+    boxes.classList.add("isActive");
   }
   // Recupération source et nom de la photo pour création du code HTML de la lightbox
   mediaFind.forEach((media) => {
@@ -513,15 +526,17 @@ function lightBox() {
     logo.style.display = "block";
     let likesCount = document.getElementById("likesCount");
     likesCount.style.display = "flex";
-    let lightBox = document.getElementById("lightBox");
-    lightBox.style.display = "none";
-    lightBox.setAttribute("aria-hidden", true);
+    let lightbox = document.getElementById("lightBox");
+    lightbox.style.display = "none";
+    lightbox.setAttribute("aria-hidden", true);
     let close = document.getElementById("lightbox__close");
     close.style.display = "none";
     let allImg = document.querySelectorAll(".lightbox__container");
     allImg.forEach((img) => {
       img.classList.add("hiddenImg");
     });
+    let boxes = document.getElementById("boxes");
+    boxes.classList.remove("isActive");
   }
 
   // Event sur touche escape - navigation au clavier
@@ -539,6 +554,7 @@ async function init() {
   count(data);
   price(data);
   letsModal(dataFiltre);
+  eventLightBox(dataFiltre);
   lightBox(dataFiltre);
 }
 
