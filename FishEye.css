@@ -349,7 +349,10 @@
     align-self: center;
   }
 
-  #champ {
+  #champFirst,
+  #champLast,
+  #champMail,
+  #champMess {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -916,7 +919,10 @@
   }
 
   .headModal,
-  #champ {
+  #champFirst,
+  #champLast,
+  #champMail,
+  #champMess {
     margin-left: 50px;
   }
 
