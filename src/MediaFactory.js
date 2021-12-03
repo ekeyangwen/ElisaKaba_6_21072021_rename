@@ -59,7 +59,7 @@ export class vid {
   }
   createHTML() {
     return `<section class="mediaPhotographes">
-    <video controls class="path"><source src="${this.path}" alt="${this.alt}"></></video>
+    <video controls class="path"><source src="${this.path}" alt="${this.alt}" tabindex="0"></></video>
     <section class="infoMedia">
     <p class="title">${this.title}</p>
     <button class="likesBtn">
