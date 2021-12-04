@@ -29,7 +29,7 @@ export class photographe {
 
   createPagePhotographes() {
     return `
-    <section class ="persoPhoto">
+    <section class="persoPhoto">
       <section class= "pagePersoPhotographe">
         <p class="namePerso">${this.name}</p>
         <p class="cityPerso">${this.city}, ${this.country}</p>
@@ -38,13 +38,18 @@ export class photographe {
           .map((tag) => `<li class="tagsTab">#${tag}</li>`)
           .join("")}
         </ul>
-           
-      </section>
-      <button id="persoContactBtn">Contactez-moi</button>
-        <img class="vignettePerso" src="${this.portrait}" alt="${
+       
+    </section>
+
+   <section id="vignetteContact">
+        <button id="persoContactBtn">Contactez-moi</button>
+           <img class="vignettePerso" src="${this.portrait}" alt="${
       this.alt
     }""></img>
-    </section>
+    
+      </section
+      </section>
+      </section>
   <section class="triPhoto">
 
 <label for="choixTri" class="trier">Trier par</label>
@@ -55,7 +60,9 @@ export class photographe {
       <option value="date" class="choix">Date</option>
       <option value="titre" class="choix">Titre</option>
      </select>
-  </section>`;
+
+     </section>
+ `;
   }
   createTitleModal() {
     return `</br>

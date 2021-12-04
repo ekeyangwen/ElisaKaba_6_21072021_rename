@@ -5,16 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Photographe</title>
-    <script
-      src="https://kit.fontawesome.com/08db705dca.js"
-      ;
-      crossorigin="anonymous"
-      ;
-    ></script>
+    <script src="https://kit.fontawesome.com/08db705dca.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
     <!--responsive-->
     <link rel="stylesheet" href="./FishEye.css" />
   </head>
@@ -30,19 +25,19 @@
     </header>
 
     <div id="mainPhotographe">
-      <section id="pagePerso"></section>
+      <h1 id="pagePerso"></h1>
 
-      <section id="pageMedia"></section>
+      <h2 id="pageMedia"></h2>
 
       <aside id="modal" aria-hidden="true" aria-labelledby="titleModal">
         <form id="modalForm" name="contact" method="get">
-          <div class="headModal">
-            <h1 id="titleModal">Contactez-moi</h1>
+          <h2 class="headModal">
+            <span id="titleModal">Contactez-moi</span>
             <button id="modalClose">
               <strong class="fas fa-times" aria-hidden="false"></strong>
               <span class="fermer">Fermer la boite Modale</span>
             </button>
-          </div>
+          </h2>
           <div class="firstredChamp" id="champFirst">
             <label for="first">Prénom</label>
             <input
@@ -93,7 +88,7 @@
         </div>
       </aside>
     </div>
-    <section id="boxes">
+    <div id="boxes">
       <div id="lightBox">
         <button id="lightbox__prev" class="prevImg" aria-hidden="true">
           <strong class="fas fa-chevron-left" aria-hidden="true"></strong>
@@ -113,7 +108,7 @@
           <span class="fermer" aria-hidden="true">Fermer</span>
         </button>
       </div>
-    </section>
+    </div>
     <script type="module" src="./src/pagePhotographes.js"></script>
     <script type="module" src="./src/Photographes.js"></script>
     <script type="module" src="./src/MediaFactory.js"></script>
