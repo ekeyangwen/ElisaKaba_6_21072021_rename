@@ -444,7 +444,6 @@ function lightBox() {
   // fonction pour lancer la lightbox
   function launchBox() {
     let lightbox = document.getElementById("lightBox");
-    lightbox.classList.add("isActive");
     let main = document.getElementById("mainPhotographe");
     main.style.display = "none";
     let logo = document.getElementById("logoAccueil");
