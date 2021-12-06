@@ -360,8 +360,7 @@ const letsModal = function () {
 };
 
 //fonctions events  prev et next de la lightbox
-// const eventLightBox = function () {
-// Previous et next event
+
 let prev = document.getElementById("lightbox__prev");
 prev.addEventListener("click", previousImg);
 let next = document.getElementById("lightbox__next");
@@ -374,7 +373,6 @@ function nextImg() {
   for (let i = 0; i < container.length; i++) {
     if (!container[i].classList.contains("hiddenImg")) {
       index = i;
-      console.log(index);
     }
     if (index === container.length - 1) {
       container[index].classList.toggle("hiddenImg");
@@ -394,7 +392,6 @@ function previousImg() {
   for (let i = 0; i < container.length; i++) {
     if (!container[i].classList.contains("hiddenImg")) {
       previndex = i;
-      console.log(previndex);
     }
     if (previndex === 0) {
       container[previndex].classList.toggle("hiddenImg");
